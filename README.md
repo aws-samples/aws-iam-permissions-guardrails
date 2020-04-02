@@ -11,15 +11,19 @@ These IAM Permissions Guardrails are based on collective experiences. That said,
 ## Frequently Asked Questions
 
 Q. How were these guardrails created?
+
 A. We’ve collected, cataloged, and curated our IAM knowledge based on working with a variety of AWS customers.
 
 Q. Who is the audience for these IAM Permissions Guardrails?
+
 A. Customers that desire help to look around corners and learn from the experiences of others.
 
 Q. Do you have any code to evaluate IAM policies against the IAM Permissions Guardrails?
+
 A.  We will be releasing over the course of the year tools that enable you to analyze your environment against the IAM Permissions Guardrails.
 
 Q. I have ideas to improve this repository. What should I do?
+
 A. Please create an issue or submit a pull request.
 
 
