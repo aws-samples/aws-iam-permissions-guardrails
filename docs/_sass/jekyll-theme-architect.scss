@@ -8,7 +8,7 @@ body {
   font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
-  color: #666;
+  color: #665;
   background: #fafafa url(../images/body-bg.jpg) 0 0 repeat;
 }
 
@@ -29,6 +29,7 @@ header {
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif;
   background: #2e7bcf url(../images/header-bg.jpg) 0 0 repeat-x;
   border-bottom: solid 1px #275da1;
+  width: 2000px;
 }
 
 header h1 {
@@ -55,7 +56,8 @@ header h2 {
 
 .inner {
   position: relative;
-  width: 940px;
+  //width: 940px;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -164,7 +166,7 @@ hr {
 }
 
 table {
-  width: 100%;
+  width: 250%;
   border: 1px solid #ebebeb;
 }
 
@@ -326,7 +328,7 @@ footer {
 }
 
 footer a {
-  color: #666;
+  color: #665;
 }
 footer a:hover {
   color: #444;
