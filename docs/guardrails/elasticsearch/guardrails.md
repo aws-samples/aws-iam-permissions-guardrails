@@ -1,0 +1,9 @@
+---
+layout: default
+---
+
+## Amazon ElasticSearch Service
+
+| Identifier          | Guardrail                                                                   | Rationale                                                                                                                                                                                           | Remediation                                                                                  | References                                                                            | Policy   | IAM Actions   |
+|:--------------------|:----------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------|:---------|:--------------|
+| IAM-ELASTICSEARCH-1 | Roles which provide permissions to run GET and DELETE actions on ES domains | ES domains may store senstive informations which should not be accssible by all the roles in an AWS account. Sensitive ES domains should not be allowed to be accessed other than whitelisted roles | Remove roles for GET and DELETE permissions from the policy other than the whitelisted roles | https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticsearchservice.html | IAM      |               |

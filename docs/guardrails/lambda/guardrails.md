@@ -1,0 +1,9 @@
+---
+layout: default
+---
+
+## AWS Lambda
+
+| Identifier   | Guardrail                                                                                                              | Rationale                                                                                                                                                                                                                                          | Remediation               | References                                                                                                       | Policy                  | IAM Actions   |
+|:-------------|:-----------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|:-----------------------------------------------------------------------------------------------------------------|:------------------------|:--------------|
+| IAM-LAMBDA-1 | Check that if Amazon API Gateway calls AWS Lambda, to scope to the specific authorized API Gateway using aws:SourceArn | When an AWS Service invokes another AWS Service, the aws:SourceArn is included in the request context. The confused deputy problem where if another party knows the Lambda arn could potentially use the Amazon API Gateway to invoke your lambda. | Specify the aws:SourceArn | https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn | Lambda resource policy. |               |
