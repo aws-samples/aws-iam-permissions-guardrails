@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-5",
+  "Guardrail": "Check that either only authorized principals or no principals can place a new KMS key policy.",
+  "Rationale": "Users with the PutKeyPolicy permission for a CMK can completely replace the key policy for a CMK with a different key policy of their choice.",
+  "Remediation": "Permission kms:PutKeyPolicy should only be for authorized principals. Ensure any attached policies are for authorized use cases only and have sufficient preventive controls and monitoring alerts. Enforce with preventive controls (e.g., service control policies). Detect on any AWS API calls to put key policy.",
+  "References": "https://d0.awsstatic.com/whitepapers/aws-kms-best-practices.pdf",
+  "Policy": "KMS Key Policy and Identity Policy",
+  "IAM Actions": "kms:PutKeyPolicy",
+  "Authorized Principals": ""
+}

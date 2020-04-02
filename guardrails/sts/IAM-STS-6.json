@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-STS-6",
+  "Guardrail": "sts:TagSession is not allowed for users who can assumeRole*",
+  "Rationale": "If users can tag sessions with their own key values, they can possibly ovverride the tag of their role’s tag. thus breaking the boundary of the IAM construct. thus this permission should not be allowed if we have dynamic tag-based access control in the role’s policy",
+  "Remediation": "Removests:TagSessionfrom the policy",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_permissions-required",
+  "Policy": "IAM policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

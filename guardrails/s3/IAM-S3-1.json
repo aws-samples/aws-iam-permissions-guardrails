@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-S3-1",
+  "Guardrail": "Check that the S3 VPC Endpoint Policy is scoped appropriately.",
+  "Rationale": "A VPC endpoint policy is an IAM resource policy that you attach to an endpoint when you create or modify the endpoint. If you do not attach a policy when you create an endpoint, a default policy will be attached for you that allows full access to the service. The VPC Endpoint policy is an opportunity for you to block any unauthorized access. Consider specifying only authorized permissions. Also, consider utilizing condition keys to further scope authorized access.",
+  "Remediation": "Scope the VPC Endpoint Policy, for example use the condition key use the condition key such as aws:PrincipalOrgID.",
+  "References": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid",
+  "Policy": "VPC Endpoint Policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

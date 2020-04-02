@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-SQS-2",
+  "Guardrail": "Check that only authorized principals are able to invoke SendMessage or SendMessageBatch.",
+  "Rationale": "Unauthorized principals can flood the SQS queues, potentially resulting in large costs or a denial of service against the SQS queues. The second concern would be related to malicious messages. The default SQS message size is 256KB, though clients can send a maximum payload size of 2GB. If input sanitization is not fully performed and fully trusted, the consuming application could be at risk.",
+  "Remediation": "Scope SendMessage and SendMessageBatch to authorized principals only.",
+  "References": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessageBatch.html",
+  "Policy": "nan",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

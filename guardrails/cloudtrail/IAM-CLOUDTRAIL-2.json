@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-CLOUDTRAIL-2",
+  "Guardrail": "Check that only authorized principals are able to UpdateTrail.",
+  "Rationale": "Unauthorized principals could potentially turn off log file validation, turn off multi region trails, or turn off organizational trails. As Cloudtrail is the source for auditing of activity within your AWS Account, it is important to verify that this functionality is only for authorized principals within your Organization. Examples of authorized principals include break glass roles or those who own the logging capability, such as Security or the Logging Team.",
+  "Remediation": "Verify that UpdateTrail is allowed only for authorized principals and denied for all else.",
+  "References": "https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_UpdateTrail.html",
+  "Policy": "",
+  "IAM Actions": "cloudtrail:UpdateTrail",
+  "Authorized Principals": ""
+}

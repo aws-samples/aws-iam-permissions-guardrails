@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-2",
+  "Guardrail": "Check that either only authorized principals or no principals can delete imported key material.",
+  "Rationale": "This is a potentially destructive action. Deletes key material that you previously imported. This operation makes the specified customer master key (CMK) unusable until the key material is reimported. All encrypted data is unreadable and unable to be decrypted until the customer reimports the exact same key material. A decision should be made if any break-glass roles should have this capability. These authorized roles should be whitelisted and all other rules should trigger a violation.",
+  "Remediation": "Permission kms:DeleteImportedKeyMaterial should only be for authorized principals. Ensure any attached policies are for authorized use cases only and have sufficient preventive controls and monitoring alerts. Enforce with preventive controls (e.g., service control policies). Detect on any AWS API calls to delete imported key material.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-delete-key-material.html",
+  "Policy": "KMS Key Policy and IAM Policy",
+  "IAM Actions": "kms:DeleteImportedKeyMaterial",
+  "Authorized Principals": ""
+}

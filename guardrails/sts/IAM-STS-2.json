@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-STS-2",
+  "Guardrail": "Check that usage of Principal \"*\" is not allowed without the usage of proper condition keys",
+  "Rationale": "A principal setting of \"*\" allows any authenticated AWS Identity to assume that role, provided they know the ARN. Broadly assumable roles should be considered an anti-pattern in most cases. If a use case arises that it is unavoidable (when you need to provide external access to multiple identities to resources that don’t support resource policies), the Assume Role Policy should be properly scoped with conditions to limit access",
+  "Remediation": "Add the condition aws:PrincipalOrgId, or aws:PrincipalArn with an account number, or aws:SourceAccount",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html",
+  "Policy": "Trust Policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

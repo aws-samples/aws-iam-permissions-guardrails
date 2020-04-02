@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-SES-1",
+  "Guardrail": "Check that if SES calls Amazon S3 use aws:Referer.",
+  "Rationale": "Specifying the aws:Referer will help prevent the confused deputy problem and ensure that requests originate from the authorized AWS Account Id.",
+  "Remediation": "Add aws:Referer specifying the AWS Account Id.",
+  "References": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html#receiving-email-permissions-s3",
+  "Policy": "nan",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

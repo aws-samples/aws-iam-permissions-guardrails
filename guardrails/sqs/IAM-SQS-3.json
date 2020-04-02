@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-SQS-3",
+  "Guardrail": "Check that only authorized principals are able to invoke ReceiveMessage.",
+  "Rationale": "Unauthorized principals can consume messages, thus preventing the intended consumer from receiving the message. Particularly if the queue is FIFO exactly once.",
+  "Remediation": "Scope ReceiveMessage to authorized principals only.",
+  "References": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html https://aws.amazon.com/about-aws/whats-new/2016/11/amazon-sqs-introduces-fifo-queues-with-exactly-once-processing-and-lower-prices-for-standard-queues/",
+  "Policy": "nan",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

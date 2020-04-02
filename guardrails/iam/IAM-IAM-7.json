@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-IAM-7",
+  "Guardrail": "iam:GetAccountAuthorizationDetails is limited to only whitelisted roles",
+  "Rationale": "Since this action provides all information (IAM principals and their relationship with each other) about your IAM constrcuts in an account it can be used for recon for unintended actions",
+  "Remediation": "Removal of the action from the policy",
+  "References": "https://docs.aws.amazon.com/IAM/latest/APIReference/API_GetAccountAuthorizationDetails.html",
+  "Policy": "IAM",
+  "IAM Actions": "iam:GetAccountAuthorizationDetails",
+  "Authorized Principals": ""
+}

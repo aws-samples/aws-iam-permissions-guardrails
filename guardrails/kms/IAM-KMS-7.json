@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-7",
+  "Guardrail": "Check that either only authorized principals or no principals can disable key rotation.",
+  "Rationale": "Disabling key rotation will prevent the CMK from automatic annual rotation.",
+  "Remediation": "Permission kms:DisableKeyRotation should only be for authorized principals. Ensure any attached policies are for authorized use cases only and have sufficient preventive controls and monitoring alerts. Enforce with preventive controls (e.g., service control policies). Detect on any AWS API calls to disable CMKs.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+  "Policy": "KMS Key Policy",
+  "IAM Actions": "kms:DisableKeyRotation",
+  "Authorized Principals": ""
+}

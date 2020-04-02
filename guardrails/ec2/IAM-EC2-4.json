@@ -1,0 +1,24 @@
+{
+  "Identifier": "IAM-EC2-4",
+  "Guardrail": "Check that sensitive more frequently used EC2 actions are appropriately scoped to approprariate roles and resources.",
+  "Rationale": "These EC2 actions might be more frequently needed, particularly in a development environment. However, these are sensitive EC2 permissions and should be appropriately scoped and for authorized roles only.",
+  "Remediation": "Secure using IAM condition statements and tags.InstanceSecurityGroup AttachVolume CopyImage CopyFpgaImage CreateFpgaImage CreateImage DeleteFpgaImage DeregisterImage DisassociateAddress DisassociateIamInstanceProfile ModifyFpgaImageAttribute ModifyImageAttribute ReplaceIamInstanceProfileAssociation",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-policy-keys https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html",
+  "Policy": "",
+  "IAM Actions": [
+    "ec2:InstanceSecurityGroup",
+    "ec2:AttachVolume",
+    "ec2:CopyImage",
+    "ec2:CopyFpgaImage",
+    "ec2:CreateFpgaImage",
+    "ec2:CreateImage",
+    "ec2:DeleteFpgaImage",
+    "ec2:DeregisterImage",
+    "ec2:DisassociateAddress",
+    "ec2:DisassociateIamInstanceProfile",
+    "ec2:ModifyFpgaImageAttribute",
+    "ec2:ModifyImageAttribute",
+    "ec2:ReplaceIamInstanceProfileAssociation"
+  ],
+  "Authorized Principals": ""
+}

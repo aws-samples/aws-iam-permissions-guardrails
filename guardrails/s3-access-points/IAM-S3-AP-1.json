@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-1",
+    "Guardrail": "Check that the VPC mentioned in the S3-AccessEndpoint is valid VPC",
+    "Rationale": "The Access Point cannot be edited once it has been created. If it has been created incorrectly, the only method is to delete the access point and create a new access point.",
+    "Remediation": "Check the VPC value provided in the API call payload for creating access point is a valid VPC in the account specified.",
+    "References": "https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html",
+    "Policy": "NA",
+    "IAM Actions": "s3:CreateAccessPoint",
+    "Authorized Principals": "NA"
+  }
+  

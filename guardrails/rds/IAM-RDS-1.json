@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-RDS-1",
+  "Guardrail": "Check for separation of duties for administration of KMS keys and capability to perform encryption operations of the KMS Keys.",
+  "Rationale": "Enabling encryption at rest for Amazon RDS or Amazon Aurora does not require the database administrator to have encrypt and decrypt capability. Over-privileged database administrator that are able to administrate the database as well as having KMS key access would be able to decrypt and view database encrypted data, such as backups.",
+  "Remediation": "Separate out the privileges of database administration and access to the KMS keys. Create a Key Administrator Role for Create, Describe, List, Get. The RDS Service can have Encrypt, Decrypt, CreateGrants Actions using the condition keys kms:CallerAccount and kms:ViaService.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-caller-account https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service",
+  "Policy": "KMS Policy and IAM Policy.",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

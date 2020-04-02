@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-3",
+    "Guardrail": "Allow s3:GetObject and s3:PutObject on the S3 Access Points owned by the account.",
+    "Rationale": "If a user has IAM policies or bucket policies which allow authorized users to interact with the bucket's objects through access point, the s3:DataAccessPointAccount condition should be added to ensure only access points owned by the buckets are allowed to perform s3:GetObject and s3:PutObjects",
+    "Remediation": "Add s3:DataAccessPointAccount condition to the bucket policy to deny all GetObject and PutObject actions to  S3 Access point's owner account",
+    "References": "https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies",
+    "Policy": "S3 bucket policy",
+    "IAM Actions": "s3:DataAccessPointAccount",
+    "Authorized Principals": ""
+  }
+  

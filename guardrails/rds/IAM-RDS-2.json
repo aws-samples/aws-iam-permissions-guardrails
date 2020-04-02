@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-RDS-2",
+  "Guardrail": "Check that only encrypted RDS or Aurora storage is allowed.",
+  "Rationale": "Ensuring that databases can only be created that have encryption at rest is a preventive control. Alternatively, if databases are allowed to be created unencrypted, there needs to be additional detective controls with potential maintenance and downtime to convert the database to encryption at rest.",
+  "Remediation": "Specify the ‘rds:StorageEncrypted’ condition key as part of any Create* IAM Actions.",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrds.html#amazonrds-rds_StorageEncrypted",
+  "Policy": "nan",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

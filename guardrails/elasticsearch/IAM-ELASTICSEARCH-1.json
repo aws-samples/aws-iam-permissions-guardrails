@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-ELASTICSEARCH-1",
+  "Guardrail": "Roles which provide permissions to run GET and DELETE actions on ES domains",
+  "Rationale": "ES domains may store senstive informations which should not be accssible by all the roles in an AWS account. Sensitive ES domains should not be allowed to be accessed other than whitelisted roles",
+  "Remediation": "Remove roles for GET and DELETE permissions from the policy other than the whitelisted roles",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonelasticsearchservice.html",
+  "Policy": "IAM",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

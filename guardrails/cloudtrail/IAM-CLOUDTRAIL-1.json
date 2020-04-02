@@ -1,0 +1,13 @@
+{
+  "Identifier": "IAM-CLOUDTRAIL-1",
+  "Guardrail": "Check that Principals aren’t allowed to DeleteTrail or StopLogging",
+  "Rationale": "As Cloudtrail is the source for auditing of activity within your AWS Account, it is important to verify that this functionality cannot be disabled by most entities within your Organization. This permission should be limited to breakglass roles (those who own the logging capability). It is also important to call out that Cloudtrail supports Resource Level Permissions for individual trails, so this can be scoped to Infosec/Logging Team owned Trails if the usecase exists for other independent teams to need access to manage their own trails",
+  "Remediation": "Verify that DeleteTrail and StopLogging are explicitly denied to non-whitelisted Principals And That DeleteTrail and StopLogging permissions don’t exist in an Allow Statement for any non-whitelisted principal",
+  "References": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awscloudtrail.html",
+  "Policy": "Service Control Policy and IAM Policy",
+  "IAM Actions": [
+    "cloudtrail:DeleteTrail",
+    "cloudtrail:StopLogging"
+  ],
+  "Authorized Principals": ""
+}

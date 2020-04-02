@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-EC2-2",
+  "Guardrail": "Check EC2 instances can only run instances with approved Amazon Machine Images (AMIs).",
+  "Rationale": "For security hardening, vulnerability management, and configuration management purposes, only approved AMIs should be used to launch instances in Production or Production-like environments.",
+  "Remediation": "Scope ec2:RunInstances resources to approved AMI ids or Use Condition tag with ec2:ResourceTag",
+  "References": "https://aws.amazon.com/premiumsupport/knowledge-center/restrict-launch-tagged-ami/ https://aws.amazon.com/blogs/aws/amazon-ec2-resource-level-permissions-for-runinstances/ https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-ec2_ResourceTag___TagKey_",
+  "Policy": "IAM",
+  "IAM Actions": "ec2:RunInstances",
+  "Authorized Principals": ""
+}

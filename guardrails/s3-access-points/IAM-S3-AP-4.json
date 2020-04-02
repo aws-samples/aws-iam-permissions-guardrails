@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-4",
+    "Guardrail": "Limit access to the S3 bucket only through a specific S3 Access Point for the bucket",
+    "Rationale": "Buckets which have specific access points enabled and do not have access pattern outside of access points. These buckets should have bucket policies which allow GetObject and PubObject only through the approved S3 Access Endpoints",
+    "Remediation": "Add s3:DataAccessPointAccount condition to the bucket policy to deny all GetObject and PutObject actions to  S3 Access point's owner account",
+    "References": "https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies",
+    "Policy": "S3 bucket policy",
+    "IAM Actions": "s3:DataAccessPointAccount",
+    "Authorized Principals": ""
+  }
+  

@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-ECR-2",
+  "Guardrail": "Check that only authorized principals are able to pull images from ECR.",
+  "Rationale": "An authorization token is used to manage authorization to ECR. Only authorized principals should have the ability to retrieve the authorization token, in order to protect any images in ECR.",
+  "Remediation": "For the action ecr:GetAuthorizationToken either: Explicitly grant to a list of authorized principals OR Consider usingaws:PrincipalOrgPathswhen multiple AWS Accounts need access.",
+  "References": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html#AmazonEC2ContainerRegistryReadOnly https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html",
+  "Policy": "nan",
+  "IAM Actions": "ecr:GetAuthorizationToken",
+  "Authorized Principals": ""
+}

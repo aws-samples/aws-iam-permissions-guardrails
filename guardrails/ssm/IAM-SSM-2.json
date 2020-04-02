@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-SSM-2",
+  "Guardrail": "ssm:StartSession action with Resource * that doesnt have a condition statement such as ssm:ResourceTag",
+  "Rationale": "StartSession permission allows a principal to start an SSH session with the instance target. Unrestricted access to this can lead to logging into resources which may or may not be owned by the intended principal. Session manager should allow login into properly tagged resources only. If there are the instances being spun up either deliberately or accidentally with the appropriate tags it should not be accessible via SSH using Systems Manager",
+  "Remediation": "Usage of tag condition such as ssm:ResourceTag OR Removal of the ssm:StartSession action from the IAM policy",
+  "References": "https://docs.aws.amazon.com/systems-manager/latest/userguide/auth-and-access-control-permissions-reference.html",
+  "Policy": "IAM policy",
+  "IAM Actions": "ssm:StartSession",
+  "Authorized Principals": ""
+}

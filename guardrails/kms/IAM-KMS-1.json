@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-1",
+  "Guardrail": "Check that the root principal is included in the KMS Key Policy.",
+  "Rationale": "Key lockout will occur if there are no principals that have access to the key policy. For example, say only IAM users or IAM Roles or included in the key policy. If the IAM users and IAM Roles are either deleted or they are removed from the key policy, no principal has access to the key policy. Ensuring root is included on the key policy means that in exceptional circumstances the root user can reestablish delegation to the appropriate IAM Role. This is not recommending daily or frequent root usage, rather this root is included as a precautionary measure for exceptional circumstances. The AWS Account root user is included with all created AWS Accounts. Root user is superadmin and can’t be deleted.",
+  "Remediation": "Add root principal to key policy.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html",
+  "Policy": "KMS Key Policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

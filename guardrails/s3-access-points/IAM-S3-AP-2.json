@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-2",
+    "Guardrail": "Block Public access to buckets and objects through access points",
+    "Rationale": "The block public access setting of the Access point should not be open to public unless really justified by customer requirements.",
+    "Remediation": "Check `PublicAccessBlockConfiguration` setting of access point is set to not allow public access. ",
+    "References": "",
+    "Policy": "NA",
+    "IAM Actions": "s3:CreateAccessPoint",
+    "Authorized Principals": "NA"
+  }
+  

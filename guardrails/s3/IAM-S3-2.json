@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-S3-2",
+  "Guardrail": "Check that the ability to get sensitive or classified information in S3 Objects is for authorized principals only.",
+  "Rationale": "Access to sensitive data must only be access to authorized principals. Unauthorized principals that are able to get S3 Objects would be able to read sensitive data and violate security policy.",
+  "Remediation": "Options include Complete removal of unauthorized principals from s3:GetObject. Scoping using condition keys to contain principal access to authorized S3 objects only. Encrypt at rest the S3 objects using a customer managed AWS CMKs to provide defense in depth. If the key policy prevents the unauthorized principal fro decrypting the data, then the unauthorized principal will not be able to decrypt the data, even if there were able to download the S3 object.",
+  "References": "https://aws.amazon.com/blogs/security/how-to-use-bucket-policies-and-apply-defense-in-depth-to-help-secure-your-amazon-s3-data/ https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-GetObject",
+  "Policy": "nan",
+  "IAM Actions": "s3:GetObject",
+  "Authorized Principals": ""
+}

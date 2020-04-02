@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-EC2-1",
+  "Guardrail": "Check that the ability to terminate EC2 instances are appropriately scoped or are only assumable to authorized principals.",
+  "Rationale": "In Production or Production-like environments,no one other than IaC tools should have access to delete resources. Even in development, unintentional termination of EC2 instances can delay project timelines or delivery. If ec2:TerminateInstances has a wildcard resource policy ( Resource *) that isn’t scoped with a condition statement such as ec2:ResourceTag, unauthorized EC2 instances might be inadvertently terminated.",
+  "Remediation": "For unauthorized principals, either remove ec2:TerminateInstances or appropriately scope with Condition keys. Remove ec2:TerminateIntances for unauthorized principals.",
+  "References": "nan",
+  "Policy": "IAM",
+  "IAM Actions": "ec2:TerminateInstances",
+  "Authorized Principals": ""
+}

@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-3",
+  "Guardrail": "Check that either only authorized principals or no principals can delete CMKs.",
+  "Rationale": "Deleting a CMK is a destructive and potentially dangerous operation. When a CMK is deleted, all data that was encrypted under the CMK is unrecoverable. Even in development this can be disruptive as there might be unnecessary downtime. The preventive control is to avoid ununauthorized capability of deleting CMKs. Relying on the 7 day waiting period and notificatons require appropriate detective controls.",
+  "Remediation": "Permission kms:ScheduleKeyDeletion should only be for authorized principals. Ensure any attached policies are for authorized use cases only and have sufficient preventive controls and monitoring alerts. Enforce with preventive controls (e.g., service control policies). Detect on any AWS API calls to delete CMKs",
+  "References": "https://docs.aws.amazon.com/kms/latest/APIReference/API_ScheduleKeyDeletion.html",
+  "Policy": "KMS Key Policy and IAM Policy",
+  "IAM Actions": "kms:ScheduleKeyDeletion",
+  "Authorized Principals": ""
+}

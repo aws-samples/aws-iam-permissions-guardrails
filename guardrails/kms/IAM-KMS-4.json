@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-4",
+  "Guardrail": "Check that either only authorized principals or no principals can disable CMKs.",
+  "Rationale": "If you disable a CMK, it cannot be used to encrypt or decrypt data until you re-enable it. This has immediate effectiveness. This could potentially incur downtime in a production environment. Even in development this can be disruptive as there might be unnecessary downtime.",
+  "Remediation": "Permission kms:DisableKey should only be for authorized principals. Ensure any attached policies are for authorized use cases only and have sufficient preventive controls and monitoring alerts. Enforce with preventive controls (e.g., service control policies). Detect on any AWS API calls to disable CMKs.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html",
+  "Policy": "KMS Key Policy and IAM Policy",
+  "IAM Actions": "kms:DisableKey",
+  "Authorized Principals": ""
+}

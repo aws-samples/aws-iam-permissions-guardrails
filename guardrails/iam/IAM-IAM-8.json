@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-IAM-8",
+  "Guardrail": "iam:CreateUser is not allowed in roles/users who do not have business justification to have it",
+  "Rationale": "In enterprise environment, the need for having permissions to create IAM users is negligible. The only use case would be for power user who creates on-demand users in case of an incident or emergency. Thus, general use roles should not be having this permission.",
+  "Remediation": "Removal of the action from the role unless it is whitelisted",
+  "References": "nan",
+  "Policy": "IAM",
+  "IAM Actions": "iam:CreateUser",
+  "Authorized Principals": ""
+}

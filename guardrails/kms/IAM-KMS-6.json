@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-KMS-6",
+  "Guardrail": "Check that if an AWS Service requires access to CMKs (e.g., encryption at rest), to scope access to the specific AWS Service arn via kms:ViaService.",
+  "Rationale": "The kms:ViaService condition key limits use of an AWS KMS customer master key (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys) (CMK) to requests from specified AWS services. You can specify one or more services in each kms:ViaService condition key.",
+  "Remediation": "Specify the kms:ViaService condition.",
+  "References": "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-via-service",
+  "Policy": "KMS Key Policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

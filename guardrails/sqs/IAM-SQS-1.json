@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-SQS-1",
+  "Guardrail": "Check that if an AWS service calls Amazon SQS to specify the sourceArn for the authorized service.",
+  "Rationale": "Specifying the global context key sourceArn protects against the confused deputy problem.",
+  "Remediation": "Utilize the global condition context key sourceArn to specify the AWS ARN of the authorized AWS Service that is allowed to invoke your SQS service.",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-using-identity-based-policies.html",
+  "Policy": "SQS Policy or IAM Policy",
+  "IAM Actions": "",
+  "Authorized Principals": ""
+}

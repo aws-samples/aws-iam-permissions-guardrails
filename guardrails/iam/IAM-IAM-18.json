@@ -1,0 +1,32 @@
+{
+  "Identifier": "IAM-IAM-18",
+  "Guardrail": "Adding Managed Policy for denying high risk APIs",
+  "Rationale": "From the attacker perspective, walking through the first three steps of an attack (Reconnaissance, Scanning, and Access & Escalation), an attacker could leverage specific API calls in order to do damage to an AWS account. These particular APIs are what are commonly used in known attacks.",
+  "Remediation": "Add a policy that specifically denies the APIs contained within the Reference section, and adding the policy to IAM Users and Roles that are used as service users/roles.",
+  "References": "",
+  "IAM Actions": [
+    "s3:ListBucket",
+    "s3:ListAllMyBuckets",
+    "lambda:ListFunctions",
+    "kms:ListKeys",
+    "kms:ListAliases",
+    "cloudtrail:DescribeTrails",
+    "cloudtrail:ListTrails",
+    "iam:*",
+    "organizations:DescribeAccount",
+    "organizations:DescribeOrganization",
+    "organizations:DescribeOrganizationalUnit",
+    "organizations:ListAccounts",
+    "organizations:ListAWSServiceAccessForOrganization",
+    "organizations:DescribePolicy",
+    "organizations:ListChildren",
+    "organizations:ListParents",
+    "organizations:ListPoliciesForTarget",
+    "organizations:ListRoots",
+    "organizations:ListPolicies",
+    "organizations:ListTargetsForPolicy",
+    "ec2:TerminateInstances",
+    "ec2:ModifyInstanceMetadataOptions"
+  ],
+  "Authorized Principals": ""
+}

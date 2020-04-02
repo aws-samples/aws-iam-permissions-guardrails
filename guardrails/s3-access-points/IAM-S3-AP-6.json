@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-6",
+    "Guardrail": "Limit access to S3 bucket objects by restricting principals which have a common tag as the object",
+    "Rationale": "Buckets which have S3 access points enabled should have S3 access point policy enabled which allows IAM principals to make call to the objects which are tagged with a particular value",
+    "Remediation": "Add `s3:ExistingObjectTag` condition in the S3 Access Endpoint policy which has allows certain principals with the similar tags to get access to the objects",
+    "References": "https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies",
+    "Policy": "S3 access endpoint policy",
+    "IAM Actions": "s3:GetObject",
+    "Authorized Principals": ""
+  }
+  

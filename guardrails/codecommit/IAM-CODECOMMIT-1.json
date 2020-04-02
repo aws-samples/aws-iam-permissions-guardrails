@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-CODECOMMIT-1",
+  "Guardrail": "DeleteRepository action for CodeCommit is only allowed to whitelisted roles",
+  "Rationale": "CodeCommit acts as the source of truth for the versioning of different projects used by the application and/or central IT teams. If privileges to delete repository are not clearly managed, it can lead to accidental deletion of repository leading to data loss",
+  "Remediation": "Addingaws:ResourceTag/${TagKey}in the IAM policy’s condition to only allow whitelisted roles to delete the repository",
+  "References": "nan",
+  "Policy": "Resource policy",
+  "IAM Actions": "codecommit:DeleteRepository",
+  "Authorized Principals": ""
+}

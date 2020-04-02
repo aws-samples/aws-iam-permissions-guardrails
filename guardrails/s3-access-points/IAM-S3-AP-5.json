@@ -1,0 +1,11 @@
+{
+    "Identifier": "IAM-S3-AP-5",
+    "Guardrail": "Limit access to the S3 bucket only to traffic originated from VPC and coming through S3 Access Points",
+    "Rationale": "Buckets which have S3 access points enabled should have bucket policy which limits access to them only through traffic originating from Amazon VPCs. This additional control prevents misconfiguration of bucket access pattern.",
+    "Remediation": "Add s3:AccessPointNetworkOrigin condition with `VPC` value to the bucket policy to deny all GetObject and PutObject actions to  S3 Access point's owner account",
+    "References": "https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies",
+    "Policy": "S3 bucket policy",
+    "IAM Actions": "s3:AccessPointNetworkOrigin",
+    "Authorized Principals": ""
+  }
+  
