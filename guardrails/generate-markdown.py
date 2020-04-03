@@ -24,7 +24,9 @@ with open("names.csv") as f:
 
 def generate_markdown_from_files(foldername):
   frames=[]
-  for filename in os.listdir(foldername):
+  files=os.listdir(foldername)
+  files.sort()
+  for filename in files:
     print(filename)
     with open(f"{foldername}/{filename}") as json_file:
       data=json.load(json_file)
