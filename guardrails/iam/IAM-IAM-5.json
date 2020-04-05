@@ -3,7 +3,7 @@
   "Guardrail": "Require roles created by Delegated IAM Admins (e.g. developers) to have appropriate Permissions Boundary attached.",
   "Rationale": "Allowing delegated IAM admins to create roles with permissions boundaries attached provides teams the flexibility to create roles with restrictions but without waiting for an IAM admin to do it for them. In lower environments when developer roles are created, they usually have more privileges to play with services. In order to contain the potential privilege escalation, the role must have a permission boundary.",
   "Remediation": "Attach permission boundary with the developer roles (dependent on naming conventions of the developer role)",
-  "References": "nan",
+  "References": "",
   "Policy": "IAM",
   "IAM Actions": "",
   "Authorized Principals": ""

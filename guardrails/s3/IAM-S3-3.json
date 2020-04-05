@@ -3,7 +3,7 @@
   "Guardrail": "Check that frequently accessed data is stored in the appropriate S3 storage class.",
   "Rationale": "S3 provides varying storage classes that trade off retrieval time and cost. Glacier incurs a first byte delay on the order of minutes or hours. S3 One Zone-IA has reduced availability zones. It’s important that sensitive data is stored according to the desired availability and retrieval requirements.",
   "Remediation": "Specify the storage class condition key ‘s3:x-amz-storage-class’ on PutObject to specify the authorized storage classes for specific S3 Buckets.",
-  "References": "https://aws.amazon.com/s3/storage-classes/ https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-s3_x-amz-storage-class https://answers.amazon.com/questions/88994",
+  "References": ["https://aws.amazon.com/s3/storage-classes/","https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-s3_x-amz-storage-class https://answers.amazon.com/questions/88994"],
   "Policy": "nan",
   "IAM Actions": "",
   "Authorized Principals": ""

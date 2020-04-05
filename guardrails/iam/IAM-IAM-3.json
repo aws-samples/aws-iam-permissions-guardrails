@@ -3,7 +3,7 @@
   "Guardrail": "Be careful when placing IAM IP restrictions to restrict API access to specific IP addresses, such as customer’s on-premise network range.",
   "Rationale": "There are many AWS Services where the IP address of the originating user is not passed when the AWS service makes call on the user’s behalf, such as AWS CloudFormation.",
   "Remediation": "Alternatively, consider attaching the condition ’aws:SourceIp’to assumeRole* such as AssumeRoleWithSAML orAssumeRole.",
-  "References": "https://aws.amazon.com/premiumsupport/knowledge-center/iam-restrict-calls-ip-addresses/ Internal references https://aws-crm–c.na67.visual.force.com/apex/OverrideProductFeatureRequestView?id=a2v380000002mEQAAY&sfdc.override=1 https://w.amazon.com/bin/view/AWSAuth/ForwardAccessSessions",
+  "References": ["https://aws.amazon.com/premiumsupport/knowledge-center/iam-restrict-calls-ip-addresses/"],
   "Policy": "nan",
   "IAM Actions": "",
   "Authorized Principals": ""

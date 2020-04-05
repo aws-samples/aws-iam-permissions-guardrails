@@ -3,7 +3,7 @@
   "Guardrail": "Check for separation of duties regarding managing the key and cryptographic usage of the key.",
   "Rationale": "Maintaining separation of duties for sensitive and confidential data for key management and cryptographic key usage helps reduce the risk of unauthorized administrative access to the data. In addition, having a dedicated cryptographic key usage role helps reduce the risk of accidental management misconfiguration to the keys.",
   "Remediation": "Check that the key administrator and cryptographic key usage role maintain separate IAM actions for admin and usage. Examplekey admin hereandkey user here.",
-  "References": "nan",
+  "References": "",
   "Policy": "nan",
   "IAM Actions": "",
   "Authorized Principals": ""

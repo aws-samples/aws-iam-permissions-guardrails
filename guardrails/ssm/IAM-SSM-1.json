@@ -3,7 +3,7 @@
   "Guardrail": "Check that usage of ssm:SendCommand is scoped via the usage of Resource Level Permissions or via the usage of conditions such as ssm:ResourceTag (no usage of * except for breakglass/admin roles)",
   "Rationale": "ssm:RunCommand allows command execution on a machine that is managed by SSM (SSM Agent Installed and Instance Profile configured with proper permissions). If a wildcard resource is specified - this grants unrestricted access to command execution on all SSM Managed EC2 Instances across the account. While some usecases may legitimately require this access (Breakglass/Admin Accounts, IR, etc), the majority of roles should be scoped to have this access only to EC2 Instances required for function.",
   "Remediation": "Usage of Resource Level Permissions - Specifiying the ARN of the instances needed in the statement of the policy arn:Partition:ec2:{Region}:Account:instance/{InstanceId} Or Usage of a tag condition - ec2:ResourceTag to scope usage of the command to only instances containing the appropriate tag",
-  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awssystemsmanager.html#awssystemsmanager-managed-instance https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html","https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awssystemsmanager.html#awssystemsmanager-managed-instance","https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html"],
   "Policy": "IAM Policy",
   "IAM Actions": "ssm:SendCommand",
   "Authorized Principals": ""

@@ -3,7 +3,7 @@
   "Guardrail": "Check that only authorized principals can restore a database from snapshot.",
   "Rationale": "Unauthorized principals that can restore a snapshot can override and reset the master password. This is a potential attack vector to perform data exfiltration, whereby the malicious actor has access to restore the database with their defined master password. The malicious attacker can now access the data in the restored database as they have set the master password.",
   "Remediation": "Scope RestoreDBInstanceFromS3 and RestoreDBClusterFromS3 to authorized principals only. In environments with sensitive data, examples of principals that could be scoped would be automation and break glass roles.",
-  "References": "https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBClusterFromS3.html https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBInstanceFromS3.html",
+  "References": ["https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBClusterFromS3.html","https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_RestoreDBInstanceFromS3.html"],
   "Policy": "nan",
   "IAM Actions": "",
   "Authorized Principals": ""

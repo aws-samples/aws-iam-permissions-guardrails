@@ -22,6 +22,12 @@ with open("names.csv") as f:
        (key, val) = line.split("=")
        names[key] = val.strip()
 
+def convert_string_to_list(value):
+    if isinstance(value, str):
+        return [value]
+    else:
+        return value
+
 def generate_markdown_from_files(foldername):
   frames=[]
   files=os.listdir(foldername)
@@ -32,6 +38,12 @@ def generate_markdown_from_files(foldername):
       data=json.load(json_file)
       del data["Authorized Principals"]
       print(len(data))
+      if "References" in data:
+        references=convert_string_to_list(data["References"])
+        link_references=""
+        for ref in references: 
+          link_references+=f"[{ref}]({ref})<br><br>"
+        data["References"]=link_references
       frames.append(data)
 
   result=pandas.DataFrame(frames)

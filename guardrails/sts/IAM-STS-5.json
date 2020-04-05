@@ -1,9 +1,9 @@
 {
   "Identifier": "IAM-STS-5",
   "Guardrail": "Check IAM role trust policies only allow sts:AssumeRole from specific IP addresses",
-  "Rationale": "Customers want to restrict IAM user AWS API calls from specific IP addresses to ensure access is only allowed from the corporate network.",
+  "Rationale": "Customers want to restrict IAM user AWS API calls from specific IP addresses to ensure access is only allowed from the corporate network. You can use theaws:SourceIpglobal condition key in the condition element of an IAM policy to restrict API calls from specific IP addresses. However, this denies access to AWS services, such as AWS CloudFormation, that make calls on your behalf.",
   "Remediation": "Use a condition with “NotIpAddress” and “aws:SourceIp” in the IAM role trust policy for the “sts:AssumeRole” action.",
-  "References": "https://aws.amazon.com/premiumsupport/knowledge-center/iam-restrict-calls-ip-addresses/ *** You can use theaws:SourceIpglobal condition key in the condition element of an IAM policy to restrict API calls from specific IP addresses. However, this denies access to AWS services, such as AWS CloudFormation, that make calls on your behalf.",
+  "References": ["https://aws.amazon.com/premiumsupport/knowledge-center/iam-restrict-calls-ip-addresses/"],
   "Policy": "Trust Policy",
   "IAM Actions": "",
   "Authorized Principals": ""

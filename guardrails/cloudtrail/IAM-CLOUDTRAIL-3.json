@@ -3,7 +3,7 @@
   "Guardrail": "Check that the CloudTrail S3 bucket includes either the PrincipalOrgId or source account for IAM Roles. (This is not applicable to the CloudTrail service role)",
   "Rationale": "Ensure that CloudTrail S3 buckets are scoped to allow only the authorized accounts to read and write to the CloudTrail S3 bucket. Unauthorized writes from external parties could potentially occur via confused deputy if the S3 bucket is known to external parties. Add aws:PrincipalOrgID or aws:SourceAccount to the bucket policy for any IAM Roles that access the CloudTrail S3 bucket.",
   "Remediation": "Add aws:PrincipalOrgID or aws:SourceAccount to the bucket policy for any IAM Roles that access the CloudTrail S3 bucket. This is not applicable to the CloudTrail service role.",
-  "References": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-set-bucket-policy-for-multiple-accounts.html https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount",
+  "References": ["https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-set-bucket-policy-for-multiple-accounts.html", "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-principalorgid", "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount"],
   "Policy": "IAM Role",
   "IAM Actions": "",
   "Authorized Principals": ""

@@ -3,7 +3,7 @@
   "Guardrail": "Check that sensitive ECR calls such as BatchDeleteImages, DeleteRepository are for authorized principals only.",
   "Rationale": "ECR contains Docker images which would be used by mulitple project groups . Developers/app owners should be allowed to delete images, but deleting an entire repo should be a privileged action since it might affect images still being used by other team members.",
   "Remediation": "usage of ecr:ResourceTag/${TagKey} to limit deletion of repo to only the rightful owner OR removal of the action entirely (contingent to separation of duties and roles in the organization) OR have MFA in the condition",
-  "References": "nan",
+  "References": "",
   "Policy": "Resource policy",
   "IAM Actions": "",
   "Authorized Principals": ""

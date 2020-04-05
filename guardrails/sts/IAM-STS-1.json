@@ -3,7 +3,7 @@
   "Guardrail": "Check that the sts external ID is specified in the trust policy when allowing cross-account Assume Role for third parties.",
   "Rationale": "The external ID allows the user that is assuming the role to assert the circumstances in which they are operating. It also provides a way for the account owner to permit the role to be assumed only under specific circumstances. The primary function of the external ID is to address and prevent the “confused deputy” problem. The external ID addresses the confused deputy problem by preventing any other customer from tricking the third party into unwittingly accessing your resources.",
   "Remediation": "Add the condition sts:ExternalId.",
-  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-using-identity-based-policies.html",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn","https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-using-identity-based-policies.html"],
   "Policy": "Trust Policy",
   "IAM Actions": "",
   "Authorized Principals": ""

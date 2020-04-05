@@ -3,7 +3,7 @@
   "Guardrail": "Check if federated principals should only have programmatic access or also have access to the AWS Management Console.",
   "Rationale": "When you create an IAM role that establishes a trust relationship between IAM and your organization’s identity provider, the role defines what users authenticated by your organization’s IdP are allowed to do in AWS. There are two options. ChooseAllow programmatic access onlyto create a role that can be assumed programmatically from the AWS API or AWS CLI. ChooseAllow programmatic and AWS Management Console accessto create a role that can be assumed programmatically and from the console. For the action sts:AssumeRoleWithSAML, you can add the saml:aud attribute to allow the role to be assumed for both programmatic and sign-in to the AWS Management Console.",
   "Remediation": "Use the saml:aud attribute to make sure that the IAM role is assumable programmatically and for sign-in to the AWS Management Console.",
-  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html#idp_saml_Create",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html","https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_saml.html#idp_saml_Create"],
   "Policy": "Trust Policy",
   "IAM Actions": "",
   "Authorized Principals": ""

@@ -3,7 +3,7 @@
   "Guardrail": "IAM Policy Documents utilized as a Permissions Boundary are protected from modification from unauthorized entities",
   "Rationale": "When utilizing a delegated admin model of IAM to allow developers to create their own roles - a permissions boundary is utilized to prevent privilege escalation. It is important to ensure that the Delegated Admins do not have access to modify the Policy Document used as their Permissions Boundary - this creates a risk of privilege escalation.",
   "Remediation": "Prevent the following IAM Actions: “iam:CreatePolicyVersion”, “iam:DeletePolicy”, “iam:DeletePolicyVersion”, “iam:SetDefaultPolicyVersion” on the ARN of the policy document that is utilized as the permissions boundary. This can be achieved as an outright deny at the SCP, or at the Permissions Boundary level. Utilizing IAM Paths (eg - a seperate path for Delegated Admins vs Protected IAM entities) to achieve the same outcome - as long as developers cannot edit their own Permissions Boundary, or alter the current policy version.",
-  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html", "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html#access_policies_boundaries-delegate"],
   "Policy": "nan",
   "IAM Actions": [
     "iam:CreatePolicyVersion",

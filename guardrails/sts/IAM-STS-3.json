@@ -3,7 +3,7 @@
   "Guardrail": "Check that Principals allowed to sts:AssumeRole are known accounts owned by the Organization, or are pre-approved (some vendors require a cross-account role)",
   "Rationale": "As cross account roles are another avenue of access into an AWS Account, it is important the appropriate guardrails are in place. When developers are able to create roles, they can control the contents of the Assume Role Policy Document, meaning they can create a cross account role for any account they know the account number to. It is important to understand what cross account roles exist within your organization, and who is allowed access to assume those roles.",
   "Remediation": "Compare allowed principals to a whitelist of pre-approved accounts within the Org or whitelisted by the customer InfoSec Team (Third party Vendor accounts that require access)",
-  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html","https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html"],
   "Policy": "Trust Policy",
   "IAM Actions": "",
   "Authorized Principals": ""
