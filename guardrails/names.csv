@@ -15,3 +15,5 @@ ses=Amazon Simple Email Service (SES)
 sqs=Amazon Simple Queue Service (SQS)
 ssm=Amazon Systems Manager (SSM)
 sts=Amazon Security Token Service (STS)
+billing=AWS Billing
+budgets=AWS Budgets
