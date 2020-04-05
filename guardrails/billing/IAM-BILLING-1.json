@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-BILLING-1",
+  "Guardrail": "Check that the ability to modify or update AWS Billing options are only assumable to authorized principals.",
+  "Rationale": "In all AWS environments, ensure that only billing administrators and authorized principals should be able to update or modify AWS Billing options. Unauthorized modifications could affect your billing payments or account information such as email address",
+  "Remediation": "For unauthorized principals, either remove the associated IAM Actions",
+  "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awsbilling.html"],
+  "Policy": "IAM",
+  "IAM Actions": ["aws-portal:ModifyBilling", "aws-portal:ModifyAccount", "aws-portal:ModifyPaymentMethods"],
+  "Authorized Principals": ""
+}

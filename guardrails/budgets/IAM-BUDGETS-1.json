@@ -1,0 +1,10 @@
+{
+  "Identifier": "IAM-BUDGETS-1",
+  "Guardrail": "Check that the ability to modify or update AWS Budgets options are only assumable to authorized principals.",
+  "Rationale": "In all AWS environments, ensure that only Budget administrators and authorized principals should be able to update or modify AWS Budgets options. Unauthorized modifications could affect your cost and usage budgets",
+  "Remediation": "For unauthorized principals, either remove the associated IAM Actions",
+  "References": ["https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html"],
+  "Policy": "IAM",
+  "IAM Actions": ["budgets:ModifyBudget"],
+  "Authorized Principals": ""
+}
