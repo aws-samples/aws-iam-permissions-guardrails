@@ -169,10 +169,16 @@ hr {
 table {
   width: 250%;
   border: 1px solid #ebebeb;
+  border: 0.15em solid #2e7bcf;
 }
 
 th {
   font-weight: 500;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #2e7bcf;
+  color: white;
+  border: 1px solid #ebebeb;
 }
 
 td {
@@ -180,6 +186,13 @@ td {
   text-align: center;
   border: 1px solid #ebebeb;
 }
+
+th, td {
+  padding: 10px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
 
 form {
   padding: 20px;
