@@ -5,6 +5,6 @@
   "Remediation": "For unauthorized principals, remove the permissions to invoke security group IAM actions.",
   "References": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html",
   "Policy": "IAM",
-  "IAM Actions": "[ec2:AuthorizeSecurityGroupEgress,ec2:AuthorizeSecurityGroupIngress,ec2:ApplySecurityGroupsToClientVpnTargetNetwork,ec2:CreateSecurityGroup,ec2:DeleteSecurityGroup,ec2:RevokeSecurityGroupEgress,ec2:RevokeSecurityGroupIngress,ec2:UpdateSecurityGroupRuleDescriptionsEgress,ec2:UpdateSecurityGroupRuleDescriptionsIngress]",
+  "IAM Actions": ["ec2:AuthorizeSecurityGroupEgress","ec2:AuthorizeSecurityGroupIngress","ec2:ApplySecurityGroupsToClientVpnTargetNetwork","ec2:CreateSecurityGroup","ec2:DeleteSecurityGroup","ec2:RevokeSecurityGroupEgress","ec2:RevokeSecurityGroupIngress","ec2:UpdateSecurityGroupRuleDescriptionsEgress","ec2:UpdateSecurityGroupRuleDescriptionsIngress"],
   "Authorized Principals": ""
 }
