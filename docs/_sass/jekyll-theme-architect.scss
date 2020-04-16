@@ -179,12 +179,15 @@ th {
   background-color: #2e7bcf;
   color: white;
   border: 1px solid #ebebeb;
+  border-right: 0.15em solid #2e7bcf;
 }
 
 td {
   font-weight: 300;
   text-align: center;
   border: 1px solid #ebebeb;
+  border-right: 0.15em solid #2e7bcf;
+  border-bottom: 0.15em solid #2e7bcf;
 }
 
 th, td {
