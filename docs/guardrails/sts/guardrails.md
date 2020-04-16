@@ -2,6 +2,8 @@
 layout: default
 ---
 
+
+
 ## Amazon Security Token Service (STS)
 
 | Identifier   | Guardrail                                                                                                                                                     | Rationale                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Remediation                                                                                                                                                                     | References                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Policy       | IAM Actions   |

@@ -2,6 +2,8 @@
 layout: default
 ---
 
+
+
 ## Amazon Simple Queue Service (SQS)
 
 | Identifier   | Guardrail                                                                                          | Rationale                                                                                                                                                                                                                                                                                                                                                                                                  | Remediation                                                                                                                                         | References                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | Policy                   | IAM Actions   |

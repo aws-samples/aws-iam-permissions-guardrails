@@ -2,6 +2,8 @@
 layout: default
 ---
 
+
+
 ## AWS Lambda
 
 | Identifier   | Guardrail                                                                                                              | Rationale                                                                                                                                                                                                                                          | Remediation               | References                                                                                                                                                                                                                                   | Policy                  | IAM Actions   |

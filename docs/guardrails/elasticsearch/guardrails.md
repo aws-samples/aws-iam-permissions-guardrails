@@ -2,6 +2,8 @@
 layout: default
 ---
 
+
+
 ## Amazon ElasticSearch Service
 
 | Identifier          | Guardrail                                                                   | Rationale                                                                                                                                                                                           | Remediation                                                                                  | References                                                                                                                                                                             | Policy   | IAM Actions   |

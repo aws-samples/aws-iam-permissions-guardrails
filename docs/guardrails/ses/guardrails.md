@@ -2,6 +2,8 @@
 layout: default
 ---
 
+
+
 ## Amazon Simple Email Service (SES)
 
 | Identifier   | Guardrail                                          | Rationale                                                                                                                                       | Remediation                                    | References                                                                                                                                                                                                                                             |   Policy | IAM Actions   |
