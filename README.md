@@ -27,6 +27,9 @@ Q. I have ideas to improve this repository. What should I do?
 A. Please create an issue or submit a pull request.
 
 
+## Contributors
+[Contributors](CONTRIBUTORS)
+
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
