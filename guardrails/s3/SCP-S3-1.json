@@ -1,0 +1,36 @@
+{
+    "Identifier": "SCP-S3-1",
+    "Guardrail": "Prevent disabling S3 account public access block",
+    "Rationale": [
+        "Security policies require that all S3 buckets are not public within a specific set of accounts"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify S3 account public access block",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to S3", 
+                "Go to S3",
+                "Select Block public access (account settings) in the side menu",
+                "Edit and uncheck all settings",
+                "Save changes"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except", 
+    "IAM Actions": ["s3:PutAccountPublicAccessBlock"],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [
+                   "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
+                ]
+             }
+        }
+    ]
+}

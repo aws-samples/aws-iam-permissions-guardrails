@@ -1,0 +1,34 @@
+{
+    "Identifier": "SCP-EC2-1",
+    "Guardrail": "Prevent disabling default EBS encryption",
+    "Rationale": [
+        "Security policies require that all EBS volumes are encrypted by default"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify default EBS encryption setting",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to EC2", 
+                "Go to EC2 settings and uncheck the 'Always encrypt new EBS volumes'",
+                "Save"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except", 
+    "IAM Actions": ["ec2:DisableEbsEncryptionByDefault"],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [
+                   "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
+                ]
+             }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "Identifier": "SCP-GLACIER-1",
+    "Guardrail": "Prevent Glacier Deletion",
+    "Rationale": [
+        "Security policies require that all S3 Glacier Vaults and Archives cannot be deleted"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Delete Glacier Vault",
+            "Steps": [
+                "Log in to the AWS console with a role that has Glacier access", 
+                "Go to S3 Glacier",
+                "Create Vault",
+                "Delete Vault"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/amazonglacier/latest/dev/security.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All", 
+    "IAM Actions": [
+        "glacier:DeleteArchive",
+        "glacier:DeleteVault"
+    ],
+    "Resource": ["arn:aws:glacier:*:*:vaults/*"]
+}

@@ -1,0 +1,42 @@
+{
+    "Identifier": "SCP-CONFIG-1",
+    "Guardrail": "Prevent enabling and disabling AWS Config",
+    "Rationale": [
+        "Restrict enabling/disabling AWS Config to an infrastructure automation framework"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Delete configuration recorder",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access", 
+                "Delete the configuration recorder"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://aws.amazon.com/controltower/",
+        "https://aws.amazon.com/solutions/aws-landing-zone/"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except",
+    "IAM Actions": [
+        "config:DeleteConfigurationAggregator",
+        "config:DeleteConfigurationRecorder",
+        "config:DeleteDeliveryChannel",
+        "config:DeleteRetentionConfiguration",
+        "config:PutConfigurationAggregator",
+        "config:PutConfigurationRecorder",
+        "config:PutDeliveryChannel",
+        "config:PutRetentionConfiguration",
+        "config:StopConfigurationRecorder"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}

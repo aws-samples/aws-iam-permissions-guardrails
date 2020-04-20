@@ -1,0 +1,55 @@
+{
+    "Identifier": "SCP-CLOUDFORMATION-1",
+    "Guardrail": "Prevent modifications to specific CloudFormation resources",
+    "Rationale": [
+        "Restrict CloudFormation actions to specific CloudFormation Stacks and StackSets that were created by an infrastructure automation framework"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify protected CloudFormation Stack",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudFormation access", 
+                "Modify a parameter on one of the restricted CloudFormation stacks"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        ""
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except",  
+    "IAM Actions": [
+        "cloudformation:CreateChangeSet",
+        "cloudformation:CreateStack",
+        "cloudformation:CreateStackInstances",
+        "cloudformation:CreateStackSet",
+        "cloudformation:CreateUploadBucket",
+        "cloudformation:DeleteChangeSet",
+        "cloudformation:DeleteStack",
+        "cloudformation:DeleteStackInstances",
+        "cloudformation:DeleteStackSet",
+        "cloudformation:DetectStackDrift",
+        "cloudformation:DetectStackResourceDrift",
+        "cloudformation:DetectStackSetDrift",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:SetStackPolicy",
+        "cloudformation:StopStackSetOperation",
+        "cloudformation:UpdateStack",
+        "cloudformation:UpdateStackInstances",
+        "cloudformation:UpdateStackSet",
+        "cloudformation:UpdateTerminationProtection"
+    ],
+    "Resource": [
+        "arn:aws:cloudformation:*:*:stackset/[STACKSET_PREFIX]*",
+        "arn:aws:cloudformation:*:*:stack/[STACK_PREFIX]*",
+        "arn:aws:cloudformation:*:*:stack/[STACK_NAME]"
+    ],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}

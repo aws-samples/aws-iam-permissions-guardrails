@@ -1,0 +1,42 @@
+{
+    "Identifier": "SCP-CONFIG-2",
+    "Guardrail": "Prevent modifications to tagged AWS Config rules",
+    "Rationale": [
+        "Restrict enabling/disabling AWS Config except for an infrastructure automation framework role"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Update protected AWS Config rule",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access", 
+                "Update a config rule that is tagged with the system tag"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://aws.amazon.com/controltower/",
+        "https://aws.amazon.com/solutions/aws-landing-zone/"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except-Condition",
+    "IAM Actions": [
+        "config:DeleteConfigRule",
+        "config:PutConfigRule",
+        "config:TagResource",
+        "config:UntagResource"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        },
+        {
+            "StringEquals": {
+                "aws:ResourceTag/system": "[SYSTEM_NAME]"
+             }
+        }
+    ]
+}

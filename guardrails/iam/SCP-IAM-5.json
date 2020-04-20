@@ -1,0 +1,38 @@
+{
+    "Identifier": "SCP-IAM-5",
+    "Guardrail": "Prevent specific IAM actions",
+    "Rationale": [
+        "Restrict specific IAM actions to approved roles"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create new user",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has IAM access", 
+                "Create a new user",
+                "Attach a policy to an existing user"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except",
+    "IAM Actions": [
+        "iam:AttachUserPolicy",
+        "iam:CreateAccessKey",
+        "iam:CreateUser",
+        "iam:PutUserPolicy",
+        "iam:DeleteSAMLProvider"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]" ]
+             }
+        }
+    ]
+}
