@@ -1,0 +1,71 @@
+{
+    "Identifier": "SCP-S3-5",
+    "Guardrail": "Prevent Access to Specific S3 Buckets",
+    "Rationale": [
+        "Security policies require limited access to specific S3 buckets"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "List objects in protected bucket",
+            "Steps": [
+                "Log in to the AWS console with a role that has S3 access", 
+                "Go to S3",
+                "Attempt to view objects within a protected S3 bucket"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except",   
+    "IAM Actions": [
+        "s3:GetBucketAcl",
+        "s3:GetBucketCORS",
+        "s3:GetBucketLocation",
+        "s3:GetBucketLogging",
+        "s3:GetBucketNotification",
+        "s3:GetBucketObjectLockConfiguration",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPolicyStatus",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetBucketRequestPayment",
+        "s3:GetBucketTagging",
+        "s3:GetBucketVersioning",
+        "s3:GetBucketWebsite",
+        "s3:GetObject",
+        "s3:GetObjectAcl",
+        "s3:GetObjectLegalHold",
+        "s3:GetObjectRetention",
+        "s3:GetObjectTagging",
+        "s3:GetObjectTorrent",
+        "s3:GetObjectVersion",
+        "s3:GetObjectVersionAcl",
+        "s3:GetObjectVersionForReplication",
+        "s3:GetObjectVersionTagging",
+        "s3:GetObjectVersionTorrent",
+        "s3:GetReplicationConfiguration",
+        "s3:HeadBucket",
+        "s3:ListAllMyBuckets",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListBucketVersions"
+    ],
+    "Resource": [
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]",
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*"
+    ],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalArn": [
+                   "arn:aws:iam::*:role/[SECURITY_ROLE]",
+                   "arn:aws:iam::*:role/[CONFIG_RECORDER_ROLE]",
+                   "arn:aws:config:::*",
+                   "arn:aws:iam::*:role/service-role/s3crr_role_for_*"
+                ]
+             }
+        }
+    ]
+}

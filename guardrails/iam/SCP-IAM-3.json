@@ -1,0 +1,48 @@
+{
+    "Identifier": "SCP-IAM-3",
+    "Guardrail": "Prevent modifications to specific IAM roles.",
+    "Rationale": [
+        "Infrastructure automation frameworks use specific IAM roles that should only be modified by the automation framework.",
+        "Prevent IAM administrators from modifying infrastructure automation created roles."
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify protected role",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has IAM full access",
+                "Modify one of the protected roles by attaching a new policy"
+            ],
+            "Expected Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://aws.amazon.com/controltower/", "https://aws.amazon.com/solutions/aws-landing-zone/"
+    ],
+    "Policy": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except",
+    "IAM Actions": [
+        "iam:AttachRolePolicy",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:DeleteRolePermissionsBoundary",
+        "iam:DeleteRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:PutRolePermissionsBoundary",
+        "iam:PutRolePolicy",
+        "iam:UpdateRole",
+        "iam:UpdateRoleDescription"
+    ],
+    "Resource": [
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_PREFIX]*",
+        "arn:aws:iam::*:role/*[PARTIAL_PROTECTED_ROLE_NAME]*",
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]"
+    ],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
+             }
+        }
+    ]
+}
+  

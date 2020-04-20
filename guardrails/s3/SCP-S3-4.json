@@ -1,0 +1,36 @@
+{
+    "Identifier": "SCP-S3-4",
+    "Guardrail": "Prevent Specific S3 Buckets from Deletion",
+    "Rationale": [
+        "Security policies require the protection of specific S3 buckets"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Delete protected S3 bucket",
+            "Steps": [
+                "Log in to the AWS console with a role that has S3 access", 
+                "Go to S3",
+                "Create S3 Bucket with a name in the resource of the SCP policy",
+                "Delete the bucket"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/dev/security.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource", 
+    "IAM Actions": [
+        "s3:DeleteBucket",
+        "s3:DeleteBucketPolicy",
+        "s3:DeleteObject",
+        "s3:DeleteObjectVersion",
+        "s3:DeleteObjectTagging",
+        "s3:DeleteObjectVersionTagging"
+    ],
+    "Resource": [
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]",
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*"
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "Identifier": "SCP-KMS-1",
+    "Guardrail": "Prevent KMS Key Deletion",
+    "Rationale": [
+        "Prevent the accidental or intentional deletion of a KMS key",
+        "Only allow specific roles to delete KMS keys"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Schedule KMS Key Deletion",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ENCRYPTION_DELETE_KEY_ROLE in the statement but has KMS access", 
+                "Go to KMS",
+                "Schedule a key for deletion"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        ""
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except", 
+    "IAM Actions": ["kms:ScheduleKeyDeletion"],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalArn": [
+                   "arn:aws:iam::*:role/[ENCRYPTION_DELETE_KEY_ROLE]"
+                ]
+             }
+        }
+    ]
+}

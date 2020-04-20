@@ -1,0 +1,42 @@
+{
+    "Identifier": "SCP-GUARDDUTY-1",
+    "Guardrail": "Prevent disabling and modifying GuardDuty",
+    "Rationale": [
+        "Restrict disabling and modifying GuardDuty to an infrastructure automation framework role"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Disable GuardDuty",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has GuardDuty access", 
+                "Disassociate the account in the Accounts screen",
+                "Suspend GuardDuty"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_suspend-disable.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except",
+    "IAM Actions": [
+        "guardduty:DeclineInvitations",
+        "guardduty:Disassociate*",
+        "guardduty:DeleteDetector",
+        "guardduty:DeleteInvitations",
+        "guardduty:DeleteIPSet",
+        "guardduty:DeleteMembers",
+        "guardduty:DeleteThreatIntelSet",
+        "guardduty:StopMonitoringMembers",
+        "guardduty:UpdateDetector"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}

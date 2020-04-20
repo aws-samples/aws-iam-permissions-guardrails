@@ -1,0 +1,27 @@
+{
+    "Identifier": "SCP-EC2-2",
+    "Guardrail": "Prevent Creating Default VPC and Subnet",
+    "Rationale": [
+        "All VPCs and Subnets are created by the Network team following specific configurations"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create default VPC",
+            "Steps": [
+                "Log in to the AWS console with a role that has access to create VPCs", 
+                "Create Default VPC"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All", 
+    "IAM Actions": [
+        "ec2:CreateDefaultSubnet",
+        "ec2:CreateDefaultVpc"
+    ],
+    "Resource": ["*"]
+}

@@ -1,0 +1,23 @@
+{
+    "Identifier": "SCP-IAM-2",
+    "Guardrail": "Prevent creating access keys for the root user.",
+    "Rationale": [
+        "The root user should not have access keys per AWS security best practices."
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create access key for root user",
+            "Steps": [
+                "Log in to the AWS console as root user",
+                "Create an access key following these instructions: https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html"
+            ],
+            "Expected Result": "Access Denied"
+        }
+    ],
+    "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "Policy": "SCP",
+    "SCP-Type": "Prevent-For-Resource",
+    "IAM Actions": ["iam:CreateAccessKey"],
+    "Resource": ["arn:aws:iam::*:root"]
+}
+  

@@ -1,0 +1,41 @@
+{
+    "Identifier": "SCP-SNS-1",
+    "Guardrail": "Prevent Modifications to Specific SNS Topics",
+    "Rationale": [
+        "Protect infrastructure automation solution SNS Topics"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create subscription for protected SNS Topic",
+            "Steps": [
+                "Log in to the AWS console with a role that has SNS access", 
+                "Go to SNS",
+                "Attempt to create a new subscription for the protected SNS topic"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/sns/latest/dg/sns-security-best-practices.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except", 
+    "IAM Actions": [
+        "sns:AddPermission",
+        "sns:CreateTopic",
+        "sns:DeleteTopic",
+        "sns:RemovePermission",
+        "sns:SetTopicAttributes"
+    ],
+    "Resource": ["arn:aws:sns:*:*:[SNS_TOPIC_TO_PROTECT]"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalArn": [
+                   "arn:aws:iam::*:role/[SECURITY_ROLE]",
+                   "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
+                ]
+             }
+        }
+    ]
+}

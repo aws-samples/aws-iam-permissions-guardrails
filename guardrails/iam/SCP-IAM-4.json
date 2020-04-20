@@ -1,0 +1,38 @@
+{
+    "Identifier": "SCP-IAM-4",
+    "Guardrail": "Prevent iam:UpdateAssumeRolePolicy on specific IAM roles.",
+    "Rationale": [
+        "Infrastructure automation frameworks use highly privileged roles and should only be assumed from specific roles",
+        "Infrastructure automation frameworks use specific IAM roles that should only be modified by the automation framework",
+        "Prevent IAM administrators from modifying infrastructure automation created roles"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify protected role's assume role policy",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ALLOWED_LAMBDA_ROLE_NAME in the statement but has IAM full access", 
+                "Modify one of the protected roles by modifying the assume role policy to add another role"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://aws.amazon.com/controltower/",
+        "https://aws.amazon.com/solutions/aws-landing-zone/"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except",
+    "IAM Actions": ["iam:UpdateAssumeRolePolicy"],
+    "Resource": [
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_PREFIX]*",
+        "arn:aws:iam::*:role/*[PARTIAL_PROTECTED_ROLE_NAME]*",
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]"
+    ],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": "arn:aws:iam::*:role/[ALLOWED_LAMBDA_ROLE_NAME]"
+             }
+        }
+    ]
+}

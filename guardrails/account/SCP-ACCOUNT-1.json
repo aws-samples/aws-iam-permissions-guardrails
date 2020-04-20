@@ -1,0 +1,34 @@
+{
+    "Identifier": "SCP-ACCOUNT-1",
+    "Guardrail": "Prevent account region enable and disable actions",
+    "Rationale": [
+        "Restrict enabling or disabling regions for an account to an infrastructure automation framework role and/or administrator role"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Enable new region",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has account access", 
+                "Enable a new region"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Preventative",
+    "IAM Actions": [
+        "account:EnableRegion",
+        "account:DisableRegion"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}

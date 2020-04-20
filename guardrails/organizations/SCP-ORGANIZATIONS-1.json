@@ -1,0 +1,35 @@
+{
+    "Identifier": "SCP-ORGANIZATIONS-1",
+    "Guardrail": "Prevent organization leave, delete, or remove actions",
+    "Rationale": [
+        "Restrict organization leave, delete, and remove actions to an infrastructure automation framework role and/or administrator role"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Leave the Organization",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has organizations access", 
+                "Leave the organization"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except",
+    "IAM Actions": [
+        "organizations:LeaveOrganization",
+        "organizations:DeleteOrganization",
+        "organizations:RemoveAccountFromOrganization"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}

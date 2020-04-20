@@ -1,0 +1,36 @@
+{
+    "Identifier": "SCP-CLOUDWATCH-1",
+    "Guardrail": "Prevent deleting specific CloudWatch Log groups and streams",
+    "Rationale": [
+        "Security policies require that CloudWatch logs are retained for forensic investigations"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Delete log stream in protected log group",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has access to CloudWatch Logs", 
+                "Delete an old log stream in one of the protected log groups"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/security.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except", 
+    "IAM Actions": [
+        "logs:DeleteLogGroup",
+        "logs:DeleteLogStream"
+    ],
+    "Resource": ["arn:aws:logs:*:*:log-group:[LOG_GROUP_PREFIX]*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [
+                   "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
+                ]
+             }
+        }
+    ]
+}

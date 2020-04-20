@@ -1,0 +1,36 @@
+{
+    "Identifier": "SCP-CLOUDTRAIL-1",
+    "Guardrail": "Prevent modifications to specific CloudTrails",
+    "Rationale": [
+        "Restrict CloudTrail actions to specific CloudTrails that are required by the security or compliance teams"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Disable CloudTrail",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudTrail access", 
+                "Stop logging on the specified CloudTrail"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/best-practices-security.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-For-Resource-Except", 
+    "IAM Actions": [
+        "cloudtrail:DeleteTrail",
+        "cloudtrail:PutEventSelectors",
+        "cloudtrail:StopLogging",
+        "cloudtrail:UpdateTrail"
+    ],
+    "Resource": ["arn:aws:cloudtrail:${Region}:${Account}:trail/[CLOUDTRAIL_NAME]"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [ "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]" ]
+             }
+        }
+    ]
+}
