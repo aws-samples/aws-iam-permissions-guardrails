@@ -7,7 +7,8 @@ layout: default
 
 
 
-## SCP-ACCOUNT-1 Prevent account region enable and disable actions
+## SCP-ACCOUNT-1 
+## Prevent account region enable and disable actions
 
 ### Rationale
 
@@ -21,8 +22,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Enable new region |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has account access <br/>  Enable a new region <br/>  | Access Denied |
-
+|1| Enable new region |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has account access <br/>    2. Enable a new region <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -57,7 +57,8 @@ layout: default
 
 
 
-## SCP-BILLING-1 Prevent billing modification actions
+## SCP-BILLING-1 
+## Prevent billing modification actions
 
 ### Rationale
 
@@ -71,8 +72,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify billing configuration |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has aws-portal access <br/>  Modify billing configurations <br/>  | Access Denied |
-
+|1| Modify billing configuration |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has aws-portal access <br/>    2. Modify billing configurations <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -115,7 +115,8 @@ layout: default
 
 
 
-## SCP-CLOUDFORMATION-1 Prevent modifications to specific CloudFormation resources
+## SCP-CLOUDFORMATION-1 
+## Prevent modifications to specific CloudFormation resources
 
 ### Rationale
 
@@ -129,8 +130,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify protected CloudFormation Stack |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudFormation access <br/>  Modify a parameter on one of the restricted CloudFormation stacks <br/>  | Access Denied |
-
+|1| Modify protected CloudFormation Stack |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudFormation access <br/>    2. Modify a parameter on one of the restricted CloudFormation stacks <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -184,7 +184,8 @@ layout: default
 
 
 
-## SCP-CLOUDTRAIL-1 Prevent modifications to specific CloudTrails
+## SCP-CLOUDTRAIL-1 
+## Prevent modifications to specific CloudTrails
 
 ### Rationale
 
@@ -198,8 +199,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Disable CloudTrail |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudTrail access <br/>  Stop logging on the specified CloudTrail <br/>  | Access Denied |
-
+|1| Disable CloudTrail |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has CloudTrail access <br/>    2. Stop logging on the specified CloudTrail <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -236,7 +236,8 @@ layout: default
 
 
 
-## SCP-CLOUDWATCH-1 Prevent deleting specific CloudWatch Log groups and streams
+## SCP-CLOUDWATCH-1 
+## Prevent deleting specific CloudWatch Log groups and streams
 
 ### Rationale
 
@@ -250,8 +251,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Delete log stream in protected log group |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has access to CloudWatch Logs <br/>  Delete an old log stream in one of the protected log groups <br/>  | Access Denied |
-
+|1| Delete log stream in protected log group |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has access to CloudWatch Logs <br/>    2. Delete an old log stream in one of the protected log groups <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -293,7 +293,8 @@ layout: default
 
 
 
-## SCP-CONFIG-1 Prevent enabling and disabling AWS Config
+## SCP-CONFIG-1 
+## Prevent enabling and disabling AWS Config
 
 ### Rationale
 
@@ -308,8 +309,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Delete configuration recorder |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access <br/>  Delete the configuration recorder <br/>  | Access Denied |
-
+|1| Delete configuration recorder |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access <br/>    2. Delete the configuration recorder <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -344,7 +344,8 @@ layout: default
 ```
 
 
-## SCP-CONFIG-2 Prevent modifications to tagged AWS Config rules
+## SCP-CONFIG-2 
+## Prevent modifications to tagged AWS Config rules
 
 ### Rationale
 
@@ -359,8 +360,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Update protected AWS Config rule |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access <br/>  Update a config rule that is tagged with the system tag <br/>  | Access Denied |
-
+|1| Update protected AWS Config rule |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has AWS Config access <br/>    2. Update a config rule that is tagged with the system tag <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -402,7 +402,8 @@ layout: default
 
 
 
-## SCP-EC2-1 Prevent disabling default EBS encryption
+## SCP-EC2-1 
+## Prevent disabling default EBS encryption
 
 ### Rationale
 
@@ -416,8 +417,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify default EBS encryption setting |  Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to EC2 <br/>  Go to EC2 settings and uncheck the 'Always encrypt new EBS volumes' <br/>  Save <br/>  | Access Denied |
-
+|1| Modify default EBS encryption setting |    1. Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to EC2 <br/>    2. Go to EC2 settings and uncheck the 'Always encrypt new EBS volumes' <br/>    3. Save <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -444,7 +444,8 @@ layout: default
 ```
 
 
-## SCP-EC2-2 Prevent Creating Default VPC and Subnet
+## SCP-EC2-2 
+## Prevent Creating Default VPC and Subnet
 
 ### Rationale
 
@@ -458,8 +459,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create default VPC |  Log in to the AWS console with a role that has access to create VPCs <br/>  Create Default VPC <br/>  | Access Denied |
-
+|1| Create default VPC |    1. Log in to the AWS console with a role that has access to create VPCs <br/>    2. Create Default VPC <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -501,7 +501,8 @@ layout: default
 
 
 
-## SCP-GLACIER-1 Prevent Glacier Deletion
+## SCP-GLACIER-1 
+## Prevent Glacier Deletion
 
 ### Rationale
 
@@ -515,8 +516,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Delete Glacier Vault |  Log in to the AWS console with a role that has Glacier access <br/>  Go to S3 Glacier <br/>  Create Vault <br/>  Delete Vault <br/>  | Access Denied |
-
+|1| Delete Glacier Vault |    1. Log in to the AWS console with a role that has Glacier access <br/>    2. Go to S3 Glacier <br/>    3. Create Vault <br/>    4. Delete Vault <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -544,7 +544,8 @@ layout: default
 
 
 
-## SCP-GUARDDUTY-1 Prevent disabling and modifying GuardDuty
+## SCP-GUARDDUTY-1 
+## Prevent disabling and modifying GuardDuty
 
 ### Rationale
 
@@ -558,8 +559,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Disable GuardDuty |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has GuardDuty access <br/>  Disassociate the account in the Accounts screen <br/>  Suspend GuardDuty <br/>  | Access Denied |
-
+|1| Disable GuardDuty |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has GuardDuty access <br/>    2. Disassociate the account in the Accounts screen <br/>    3. Suspend GuardDuty <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -601,7 +601,8 @@ layout: default
 
 
 
-## SCP-IAM-1 Prevent the root user from performing any actions.
+## SCP-IAM-1 
+## Prevent the root user from performing any actions.
 
 ### Rationale
 
@@ -616,8 +617,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create S3 bucket with root user |  Log in to the AWS console as root user <br/>  Go to S3 and create a bucket <br/>  | Access Denied |
-
+|1| Create S3 bucket with root user |    1. Log in to the AWS console as root user <br/>    2. Go to S3 and create a bucket <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -642,7 +642,8 @@ layout: default
 ```
 
 
-## SCP-IAM-4 Prevent iam:UpdateAssumeRolePolicy on specific IAM roles.
+## SCP-IAM-4 
+## Prevent iam:UpdateAssumeRolePolicy on specific IAM roles.
 
 ### Rationale
 
@@ -659,8 +660,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify protected role's assume role policy |  Log in to the AWS console with a role that is not the ALLOWED_LAMBDA_ROLE_NAME in the statement but has IAM full access <br/>  Modify one of the protected roles by modifying the assume role policy to add another role <br/>  | Access Denied |
-
+|1| Modify protected role's assume role policy |    1. Log in to the AWS console with a role that is not the ALLOWED_LAMBDA_ROLE_NAME in the statement but has IAM full access <br/>    2. Modify one of the protected roles by modifying the assume role policy to add another role <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -687,7 +687,8 @@ layout: default
 ```
 
 
-## SCP-IAM-5 Prevent specific IAM actions
+## SCP-IAM-5 
+## Prevent specific IAM actions
 
 ### Rationale
 
@@ -701,8 +702,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create new user |  Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has IAM access <br/>  Create a new user <br/>  Attach a policy to an existing user <br/>  | Access Denied |
-
+|1| Create new user |    1. Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has IAM access <br/>    2. Create a new user <br/>    3. Attach a policy to an existing user <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -740,7 +740,8 @@ layout: default
 
 
 
-## SCP-KMS-1 Prevent KMS Key Deletion
+## SCP-KMS-1 
+## Prevent KMS Key Deletion
 
 ### Rationale
 
@@ -755,8 +756,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Schedule KMS Key Deletion |  Log in to the AWS console with a role that is not the ENCRYPTION_DELETE_KEY_ROLE in the statement but has KMS access <br/>  Go to KMS <br/>  Schedule a key for deletion <br/>  | Access Denied |
-
+|1| Schedule KMS Key Deletion |    1. Log in to the AWS console with a role that is not the ENCRYPTION_DELETE_KEY_ROLE in the statement but has KMS access <br/>    2. Go to KMS <br/>    3. Schedule a key for deletion <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -790,7 +790,8 @@ layout: default
 
 
 
-## SCP-LAMBDA-1 Prevent Modifications to Specific Lambda Functions
+## SCP-LAMBDA-1 
+## Prevent Modifications to Specific Lambda Functions
 
 ### Rationale
 
@@ -804,8 +805,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify protected Lambda function |  Log in to the AWS console with a role that has access to Lambda <br/>  Modify a protected Lambda function <br/>  | Access Denied |
-
+|1| Modify protected Lambda function |    1. Log in to the AWS console with a role that has access to Lambda <br/>    2. Modify a protected Lambda function <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -849,7 +849,8 @@ layout: default
 
 
 
-## SCP-ORGANIZATIONS-1 Prevent organization leave, delete, or remove actions
+## SCP-ORGANIZATIONS-1 
+## Prevent organization leave, delete, or remove actions
 
 ### Rationale
 
@@ -863,8 +864,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Leave the Organization |  Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has organizations access <br/>  Leave the organization <br/>  | Access Denied |
-
+|1| Leave the Organization |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has organizations access <br/>    2. Leave the organization <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -900,7 +900,8 @@ layout: default
 
 
 
-## SCP-RAM-1 Prevent sharing resources to accounts outside your organization
+## SCP-RAM-1 
+## Prevent sharing resources to accounts outside your organization
 
 ### Rationale
 
@@ -914,8 +915,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create external resource share |  Log in to the AWS console with a role that has access to Resource Access Manager <br/>  Create a resource share leaving 'Allow external accounts' checked <br/>  | Access Denied |
-
+|1| Create external resource share |    1. Log in to the AWS console with a role that has access to Resource Access Manager <br/>    2. Create a resource share leaving 'Allow external accounts' checked <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -954,7 +954,8 @@ layout: default
 
 
 
-## SCP-S3-1 Prevent disabling S3 account public access block
+## SCP-S3-1 
+## Prevent disabling S3 account public access block
 
 ### Rationale
 
@@ -968,8 +969,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Modify S3 account public access block |  Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to S3 <br/>  Go to S3 <br/>  Select Block public access (account settings) in the side menu <br/>  Edit and uncheck all settings <br/>  Save changes <br/>  | Access Denied |
-
+|1| Modify S3 account public access block |    1. Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to S3 <br/>    2. Go to S3 <br/>    3. Select Block public access (account settings) in the side menu <br/>    4. Edit and uncheck all settings <br/>    5. Save changes <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -996,7 +996,8 @@ layout: default
 ```
 
 
-## SCP-S3-2 Prevent S3 unencrypted object uploads
+## SCP-S3-2 
+## Prevent S3 unencrypted object uploads
 
 ### Rationale
 
@@ -1010,8 +1011,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Upload unencrypted object |  Log in to the AWS console with a role that has access to S3 <br/>  Go to S3 <br/>  Create an S3 bucket <br/>  Upload an object with server-side encryption set to false <br/>  | Access Denied |
-
+|1| Upload unencrypted object |    1. Log in to the AWS console with a role that has access to S3 <br/>    2. Go to S3 <br/>    3. Create an S3 bucket <br/>    4. Upload an object with server-side encryption set to false <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -1042,7 +1042,8 @@ layout: default
 ```
 
 
-## SCP-S3-3 Prevent S3 public object access
+## SCP-S3-3 
+## Prevent S3 public object access
 
 ### Rationale
 
@@ -1056,8 +1057,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create public S3 object |  Log in to the AWS console with a role that has access to S3 <br/>  Go to S3 <br/>  Create an S3 bucket <br/>  Upload an object <br/>  Modify the object ACL to be public <br/>  | Access Denied |
-
+|1| Create public S3 object |    1. Log in to the AWS console with a role that has access to S3 <br/>    2. Go to S3 <br/>    3. Create an S3 bucket <br/>    4. Upload an object <br/>    5. Modify the object ACL to be public <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -1083,7 +1083,8 @@ layout: default
 ```
 
 
-## SCP-S3-4 Prevent Specific S3 Buckets from Deletion
+## SCP-S3-4 
+## Prevent Specific S3 Buckets from Deletion
 
 ### Rationale
 
@@ -1097,8 +1098,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Delete protected S3 bucket |  Log in to the AWS console with a role that has S3 access <br/>  Go to S3 <br/>  Create S3 Bucket with a name in the resource of the SCP policy <br/>  Delete the bucket <br/>  | Access Denied |
-
+|1| Delete protected S3 bucket |    1. Log in to the AWS console with a role that has S3 access <br/>    2. Go to S3 <br/>    3. Create S3 Bucket with a name in the resource of the SCP policy <br/>    4. Delete the bucket <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -1124,7 +1124,8 @@ layout: default
 ```
 
 
-## SCP-S3-5 Prevent Access to Specific S3 Buckets
+## SCP-S3-5 
+## Prevent Access to Specific S3 Buckets
 
 ### Rationale
 
@@ -1138,8 +1139,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| List objects in protected bucket |  Log in to the AWS console with a role that has S3 access <br/>  Go to S3 <br/>  Attempt to view objects within a protected S3 bucket <br/>  | Access Denied |
-
+|1| List objects in protected bucket |    1. Log in to the AWS console with a role that has S3 access <br/>    2. Go to S3 <br/>    3. Attempt to view objects within a protected S3 bucket <br/>   | Access Denied |
 
 
 ### Example SCP Statement
@@ -1227,7 +1227,8 @@ layout: default
 
 
 
-## SCP-SNS-1 Prevent Modifications to Specific SNS Topics
+## SCP-SNS-1 
+## Prevent Modifications to Specific SNS Topics
 
 ### Rationale
 
@@ -1241,8 +1242,7 @@ layout: default
 
 ||Test Scenario|Steps|Expected Result|
 |:-------------|:-----|:---------------|
-|1| Create subscription for protected SNS Topic |  Log in to the AWS console with a role that has SNS access <br/>  Go to SNS <br/>  Attempt to create a new subscription for the protected SNS topic <br/>  | Access Denied |
-
+|1| Create subscription for protected SNS Topic |    1. Log in to the AWS console with a role that has SNS access <br/>    2. Go to SNS <br/>    3. Attempt to create a new subscription for the protected SNS topic <br/>   | Access Denied |
 
 
 ### Example SCP Statement
