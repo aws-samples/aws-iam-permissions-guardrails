@@ -52,7 +52,11 @@ def generate_markdown_from_files(foldername):
     #print(filename)
     with open(f"{foldername}/{filename}") as json_file:
       data=json.load(json_file)
-      del data["Authorized Principals"]
+      if "SCP-Type" in data:
+        continue
+
+      if "Authorized Principals" in data:
+        del data["Authorized Principals"]
       #print(len(data))
       if "References" in data:
         references=convert_string_to_list(data["References"])
@@ -69,8 +73,10 @@ def generate_markdown_from_files(foldername):
           if not action:
             continue
           service=action.split(":")[0]
-          api=action.split(":")[1]
-          #link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{service}/latest/APIReference/API_{api}.html)<br><br>"
+          #print(iam_actions,data)
+          if action!="*":
+            api=action.split(":")[1]
+            #link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{service}/latest/APIReference/API_{api}.html)<br><br>"
           link_iam_actions+=f"{action}<br><br>"
         data["IAM Actions"]=link_iam_actions
         if len(iam_actions)>0:
@@ -89,6 +95,7 @@ def generate_markdown_from_files(foldername):
   Path(folder).mkdir(parents=True,exist_ok=True) 
   md_filename=f"{prefix}/{foldername}/guardrails.md"
   #print(md_filename)
+  print(foldername)
   service_name=names[foldername]
   with open(md_filename,'w') as out:
     out.write(template_header.format(name=service_name))

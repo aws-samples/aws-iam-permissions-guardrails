@@ -1,0 +1,13 @@
+{
+  "Identifier": "IAM-CLOUDTRAIL-4",
+  "Guardrail": "Check that Principals aren’t allowed to PutEventSelectors  or PutInsightSelectors.",
+  "Rationale": "As Cloudtrail is the source for auditing of activity within your AWS Account, it is important to verify that the CloudTrail event selectors can't be modified to disable the majority of CloudTrail events within your Organization. This permission should be limited to breakglass roles (those who own the logging capability). It is also important to call out that Cloudtrail supports Resource Level Permissions for individual trails, so this can be scoped to Infosec/Logging Team owned Trails if the usecase exists for other independent teams to need access to manage their own trails",
+  "Remediation": "Verify that PutEventSelectors  and PutInsightSelectors  are explicitly denied to non-whitelisted Principals and that PutEventSelectors and PutInsightSelectors  permissions don’t exist in an Allow Statement for any non-whitelisted principal",
+  "References": ["https://docs.aws.amazon.com/awscloudtrail/latest/userguide/security_iam_id-based-policy-examples.html", "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awscloudtrail.html"],
+  "Policy": "Service Control Policy and IAM Policy",
+  "IAM Actions": [
+    "cloudtrail:PutEventSelectors",
+    "cloudtrail:PutInsightSelectors"
+  ],
+  "Authorized Principals": ""
+}
