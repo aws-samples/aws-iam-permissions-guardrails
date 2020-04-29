@@ -52,6 +52,14 @@ def generate_markdown_from_files(foldername):
     with open(f"{foldername}/{filename}") as json_file:
       data=json.load(json_file)
       if "Policy-Type" in data and data["Policy-Type"]=="SCP":
+        conditions={}
+        if "Condition" in data:
+          for condition in data["Condition"]:
+            for key,value in condition.items():
+              conditions[key]=value
+          conditions=json.dumps(conditions,indent=4,sort_keys=True)
+          data["conditions"]=conditions
+          print(conditions)
         scp_frames.append(data)
 
   scp_template=get_template()

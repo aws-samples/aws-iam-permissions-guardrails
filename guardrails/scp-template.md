@@ -36,13 +36,7 @@
     {% filter indent(width=4) %}    "{{resource}}"{% if not loop.last %},{% endif %} {% endfilter %}
     {% endfor -%}
   ],
-  "Condition": {
-    {% for conditions in scp["Condition"] -%}
-        {% for key,value in conditions.items() -%}
-          {% filter indent(width=4) %}{{key|tojson_pretty}}{% endfilter %}:{% filter indent(width=8) %}{{value|tojson_pretty}}{% endfilter -%}
-        {% endfor %}
-    {% endfor -%}
-  }
+  "Condition": {% filter indent(width=4) %}{{scp["conditions"]}}{% endfilter %}
 }
 ```
 

@@ -38,7 +38,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -87,7 +87,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -161,7 +161,7 @@ layout: default
         "arn:aws:cloudformation:*:*:stack/[STACK_NAME]" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -211,7 +211,7 @@ layout: default
         "arn:aws:cloudtrail:${Region}:${Account}:trail/[CLOUDTRAIL_NAME]" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -259,7 +259,7 @@ layout: default
         "arn:aws:logs:*:*:log-group:[LOG_GROUP_PREFIX]*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -322,7 +322,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -366,12 +366,12 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
-        }
-    "StringEquals":{
+        },
+        "StringEquals": {
             "aws:ResourceTag/system": "[SYSTEM_NAME]"
         }
     }
@@ -416,7 +416,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
@@ -456,8 +456,7 @@ layout: default
   "Resource": [
         "*" 
     ],
-  "Condition": {
-    }
+  "Condition": 
 }
 ```
 
@@ -513,8 +512,7 @@ layout: default
   "Resource": [
         "arn:aws:glacier:*:*:vaults/*" 
     ],
-  "Condition": {
-    }
+  "Condition": 
 }
 ```
 
@@ -564,7 +562,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -612,7 +610,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnLike":{
+        "ArnLike": {
             "aws:PrincipalArn": "arn:aws:iam::*:root"
         }
     }
@@ -655,7 +653,7 @@ layout: default
         "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": "arn:aws:iam::*:role/[ALLOWED_LAMBDA_ROLE_NAME]"
         }
     }
@@ -697,7 +695,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
@@ -745,7 +743,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[ENCRYPTION_DELETE_KEY_ROLE]"
             ]
@@ -802,7 +800,7 @@ layout: default
         "arn:aws:lambda:*:*:function:[INFRASTRUCTURE_AUTOMATION_PREFIX]*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -851,7 +849,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
@@ -898,7 +896,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "Bool":{
+        "Bool": {
             "ram:AllowsExternalPrincipals": "true"
         }
     }
@@ -950,7 +948,7 @@ layout: default
         "*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
@@ -990,9 +988,10 @@ layout: default
         "arn:aws:s3:::*/*" 
     ],
   "Condition": {
-    "Bool":{
+        "Bool": {
             "s3:x-amz-server-side-encryption": false
-        }"StringNotEquals":{
+        },
+        "StringNotEquals": {
             "s3:x-amz-server-side-encryption": [
                 "aws:kms",
                 "AES256"
@@ -1034,7 +1033,7 @@ layout: default
         "arn:aws:s3:::*/*" 
     ],
   "Condition": {
-    "StringNotEquals":{
+        "StringNotEquals": {
             "s3:x-amz-acl": "private"
         }
     }
@@ -1077,8 +1076,7 @@ layout: default
         "arn:aws:s3:::[BUCKET_TO_PROTECT]", 
         "arn:aws:s3:::[BUCKET_TO_PROTECT]/*" 
     ],
-  "Condition": {
-    }
+  "Condition": 
 }
 ```
 
@@ -1143,7 +1141,7 @@ layout: default
         "arn:aws:s3:::[BUCKET_TO_PROTECT]/*" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[SECURITY_ROLE]",
                 "arn:aws:iam::*:role/[CONFIG_RECORDER_ROLE]",
@@ -1218,7 +1216,7 @@ layout: default
         "arn:aws:sns:*:*:[SNS_TOPIC_TO_PROTECT]" 
     ],
   "Condition": {
-    "ArnNotLike":{
+        "ArnNotLike": {
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[SECURITY_ROLE]",
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
