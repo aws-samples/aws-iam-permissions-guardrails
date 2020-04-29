@@ -28,17 +28,19 @@
   "Effect": "Deny",
   "Action": [
     {% for action in scp["IAM Actions"] -%}
-    {% filter indent(width=4) %}    "{{action}}", {% endfilter %}
+    {% filter indent(width=4) %}    "{{action}}"{% if not loop.last %},{% endif %} {% endfilter %}
     {% endfor -%}
   ],
   "Resource": [
     {% for resource in scp["Resource"] -%}
-    {% filter indent(width=4) %}    "{{resource}}", {% endfilter %}
+    {% filter indent(width=4) %}    "{{resource}}"{% if not loop.last %},{% endif %} {% endfilter %}
     {% endfor -%}
   ],
   "Condition": {
-    {% for condition in scp["Condition"] -%}
-    {% filter indent(width=4) %}    "{{condition|tojson_pretty}}", {% endfilter %}
+    {% for conditions in scp["Condition"] -%}
+        {% for key,value in conditions.items() -%}
+          {% filter indent(width=4) %}{{key|tojson_pretty}}{% endfilter %}:{% filter indent(width=8) %}{{value|tojson_pretty}}{% endfilter -%}
+        {% endfor %}
     {% endfor -%}
   }
 }
