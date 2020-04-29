@@ -32,19 +32,17 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "account:EnableRegion", 
-        "account:DisableRegion", 
+        "account:DisableRegion" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -83,19 +81,17 @@ layout: default
   "Action": [
         "aws-portal:ModifyAccount", 
         "aws-portal:ModifyBilling", 
-        "aws-portal:ModifyPaymentMethods", 
+        "aws-portal:ModifyPaymentMethods" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -157,21 +153,19 @@ layout: default
         "cloudformation:UpdateStack", 
         "cloudformation:UpdateStackInstances", 
         "cloudformation:UpdateStackSet", 
-        "cloudformation:UpdateTerminationProtection", 
+        "cloudformation:UpdateTerminationProtection" 
     ],
   "Resource": [
         "arn:aws:cloudformation:*:*:stackset/[STACKSET_PREFIX]*", 
         "arn:aws:cloudformation:*:*:stack/[STACK_PREFIX]*", 
-        "arn:aws:cloudformation:*:*:stack/[STACK_NAME]", 
+        "arn:aws:cloudformation:*:*:stack/[STACK_NAME]" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -211,19 +205,17 @@ layout: default
         "cloudtrail:DeleteTrail", 
         "cloudtrail:PutEventSelectors", 
         "cloudtrail:StopLogging", 
-        "cloudtrail:UpdateTrail", 
+        "cloudtrail:UpdateTrail" 
     ],
   "Resource": [
-        "arn:aws:cloudtrail:${Region}:${Account}:trail/[CLOUDTRAIL_NAME]", 
+        "arn:aws:cloudtrail:${Region}:${Account}:trail/[CLOUDTRAIL_NAME]" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -261,19 +253,17 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "logs:DeleteLogGroup", 
-        "logs:DeleteLogStream", 
+        "logs:DeleteLogStream" 
     ],
   "Resource": [
-        "arn:aws:logs:*:*:log-group:[LOG_GROUP_PREFIX]*", 
+        "arn:aws:logs:*:*:log-group:[LOG_GROUP_PREFIX]*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -326,19 +316,17 @@ layout: default
         "config:PutConfigurationRecorder", 
         "config:PutDeliveryChannel", 
         "config:PutRetentionConfiguration", 
-        "config:StopConfigurationRecorder", 
+        "config:StopConfigurationRecorder" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -372,24 +360,20 @@ layout: default
         "config:DeleteConfigRule", 
         "config:PutConfigRule", 
         "config:TagResource", 
-        "config:UntagResource", 
+        "config:UntagResource" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
-        "{
-        "StringEquals": {
+    "StringEquals":{
             "aws:ResourceTag/system": "[SYSTEM_NAME]"
         }
-    }", 
     }
 }
 ```
@@ -426,19 +410,17 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "ec2:DisableEbsEncryptionByDefault", 
+        "ec2:DisableEbsEncryptionByDefault" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -469,10 +451,10 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "ec2:CreateDefaultSubnet", 
-        "ec2:CreateDefaultVpc", 
+        "ec2:CreateDefaultVpc" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
     }
@@ -526,10 +508,10 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "glacier:DeleteArchive", 
-        "glacier:DeleteVault", 
+        "glacier:DeleteVault" 
     ],
   "Resource": [
-        "arn:aws:glacier:*:*:vaults/*", 
+        "arn:aws:glacier:*:*:vaults/*" 
     ],
   "Condition": {
     }
@@ -576,19 +558,17 @@ layout: default
         "guardduty:DeleteMembers", 
         "guardduty:DeleteThreatIntelSet", 
         "guardduty:StopMonitoringMembers", 
-        "guardduty:UpdateDetector", 
+        "guardduty:UpdateDetector" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -626,17 +606,15 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "*", 
+        "*" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnLike": {
+    "ArnLike":{
             "aws:PrincipalArn": "arn:aws:iam::*:root"
         }
-    }", 
     }
 }
 ```
@@ -669,19 +647,17 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "iam:UpdateAssumeRolePolicy", 
+        "iam:UpdateAssumeRolePolicy" 
     ],
   "Resource": [
         "arn:aws:iam::*:role/[PROTECTED_ROLE_PREFIX]*", 
         "arn:aws:iam::*:role/*[PARTIAL_PROTECTED_ROLE_NAME]*", 
-        "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]", 
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": "arn:aws:iam::*:role/[ALLOWED_LAMBDA_ROLE_NAME]"
         }
-    }", 
     }
 }
 ```
@@ -715,19 +691,17 @@ layout: default
         "iam:CreateAccessKey", 
         "iam:CreateUser", 
         "iam:PutUserPolicy", 
-        "iam:DeleteSAMLProvider", 
+        "iam:DeleteSAMLProvider" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -765,19 +739,17 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "kms:ScheduleKeyDeletion", 
+        "kms:ScheduleKeyDeletion" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[ENCRYPTION_DELETE_KEY_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -824,19 +796,17 @@ layout: default
         "lambda:RemovePermission", 
         "lambda:UpdateEventSourceMapping", 
         "lambda:UpdateFunctionCode", 
-        "lambda:UpdateFunctionConfiguration", 
+        "lambda:UpdateFunctionConfiguration" 
     ],
   "Resource": [
-        "arn:aws:lambda:*:*:function:[INFRASTRUCTURE_AUTOMATION_PREFIX]*", 
+        "arn:aws:lambda:*:*:function:[INFRASTRUCTURE_AUTOMATION_PREFIX]*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -875,19 +845,17 @@ layout: default
   "Action": [
         "organizations:LeaveOrganization", 
         "organizations:DeleteOrganization", 
-        "organizations:RemoveAccountFromOrganization", 
+        "organizations:RemoveAccountFromOrganization" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -924,17 +892,15 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "*", 
+        "*" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "Bool": {
+    "Bool":{
             "ram:AllowsExternalPrincipals": "true"
         }
-    }", 
     }
 }
 ```
@@ -978,19 +944,17 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "s3:PutAccountPublicAccessBlock", 
+        "s3:PutAccountPublicAccessBlock" 
     ],
   "Resource": [
-        "*", 
+        "*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalARN": [
                 "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
             ]
         }
-    }", 
     }
 }
 ```
@@ -1020,23 +984,20 @@ layout: default
 {
   "Effect": "Deny",
   "Action": [
-        "s3:PutObject", 
+        "s3:PutObject" 
     ],
   "Resource": [
-        "arn:aws:s3:::*/*", 
+        "arn:aws:s3:::*/*" 
     ],
   "Condition": {
-        "{
-        "Bool": {
+    "Bool":{
             "s3:x-amz-server-side-encryption": false
-        },
-        "StringNotEquals": {
+        }"StringNotEquals":{
             "s3:x-amz-server-side-encryption": [
                 "aws:kms",
                 "AES256"
             ]
         }
-    }", 
     }
 }
 ```
@@ -1067,17 +1028,15 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "s3:PutObjectVersionAcl", 
-        "s3:PutObjectAcl", 
+        "s3:PutObjectAcl" 
     ],
   "Resource": [
-        "arn:aws:s3:::*/*", 
+        "arn:aws:s3:::*/*" 
     ],
   "Condition": {
-        "{
-        "StringNotEquals": {
+    "StringNotEquals":{
             "s3:x-amz-acl": "private"
         }
-    }", 
     }
 }
 ```
@@ -1112,11 +1071,11 @@ layout: default
         "s3:DeleteObject", 
         "s3:DeleteObjectVersion", 
         "s3:DeleteObjectTagging", 
-        "s3:DeleteObjectVersionTagging", 
+        "s3:DeleteObjectVersionTagging" 
     ],
   "Resource": [
         "arn:aws:s3:::[BUCKET_TO_PROTECT]", 
-        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*", 
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*" 
     ],
   "Condition": {
     }
@@ -1177,15 +1136,14 @@ layout: default
         "s3:ListAllMyBuckets", 
         "s3:ListBucket", 
         "s3:ListBucketMultipartUploads", 
-        "s3:ListBucketVersions", 
+        "s3:ListBucketVersions" 
     ],
   "Resource": [
         "arn:aws:s3:::[BUCKET_TO_PROTECT]", 
-        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*", 
+        "arn:aws:s3:::[BUCKET_TO_PROTECT]/*" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[SECURITY_ROLE]",
                 "arn:aws:iam::*:role/[CONFIG_RECORDER_ROLE]",
@@ -1193,7 +1151,6 @@ layout: default
                 "arn:aws:iam::*:role/service-role/s3crr_role_for_*"
             ]
         }
-    }", 
     }
 }
 ```
@@ -1255,20 +1212,18 @@ layout: default
         "sns:CreateTopic", 
         "sns:DeleteTopic", 
         "sns:RemovePermission", 
-        "sns:SetTopicAttributes", 
+        "sns:SetTopicAttributes" 
     ],
   "Resource": [
-        "arn:aws:sns:*:*:[SNS_TOPIC_TO_PROTECT]", 
+        "arn:aws:sns:*:*:[SNS_TOPIC_TO_PROTECT]" 
     ],
   "Condition": {
-        "{
-        "ArnNotLike": {
+    "ArnNotLike":{
             "aws:PrincipalArn": [
                 "arn:aws:iam::*:role/[SECURITY_ROLE]",
                 "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
             ]
         }
-    }", 
     }
 }
 ```
