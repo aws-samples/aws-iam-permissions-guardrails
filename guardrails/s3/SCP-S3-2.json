@@ -25,13 +25,12 @@
     "Resource": ["arn:aws:s3:::*/*"],
     "Condition": [
         {
-            "Bool": {
-                "s3:x-amz-server-side-encryption": false
+            "Null": {
+                "s3:x-amz-server-side-encryption": "true"
              },
              "StringNotEquals": {
                 "s3:x-amz-server-side-encryption": [
-                   "aws:kms",
-                   "AES256"
+                   "aws:kms"
                 ]
              }
         }

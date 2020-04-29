@@ -35,8 +35,8 @@
     {% for resource in scp["Resource"] -%}
     {% filter indent(width=4) %}    "{{resource}}"{% if not loop.last %},{% endif %} {% endfilter %}
     {% endfor -%}
-  ],
-  "Condition": {% filter indent(width=4) %}{{scp["conditions"]}}{% endfilter %}
+  ]{% if "conditions" in scp %},
+  "Condition": {% filter indent(width=4) %}{{scp["conditions"]}}{% endfilter %}{% endif %}
 }
 ```
 

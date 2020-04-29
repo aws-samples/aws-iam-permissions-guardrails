@@ -455,8 +455,7 @@ layout: default
     ],
   "Resource": [
         "*" 
-    ],
-  "Condition": 
+    ]
 }
 ```
 
@@ -511,8 +510,7 @@ layout: default
     ],
   "Resource": [
         "arn:aws:glacier:*:*:vaults/*" 
-    ],
-  "Condition": 
+    ]
 }
 ```
 
@@ -988,13 +986,12 @@ layout: default
         "arn:aws:s3:::*/*" 
     ],
   "Condition": {
-        "Bool": {
-            "s3:x-amz-server-side-encryption": false
+        "Null": {
+            "s3:x-amz-server-side-encryption": "true"
         },
         "StringNotEquals": {
             "s3:x-amz-server-side-encryption": [
-                "aws:kms",
-                "AES256"
+                "aws:kms"
             ]
         }
     }
@@ -1075,8 +1072,7 @@ layout: default
   "Resource": [
         "arn:aws:s3:::[BUCKET_TO_PROTECT]", 
         "arn:aws:s3:::[BUCKET_TO_PROTECT]/*" 
-    ],
-  "Condition": 
+    ]
 }
 ```
 
