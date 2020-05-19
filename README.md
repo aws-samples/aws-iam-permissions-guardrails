@@ -32,5 +32,5 @@ A. Please create an issue or submit a pull request.
 
 ## License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This library is licensed under the Apache 2.0 License. See the LICENSE file.
 
