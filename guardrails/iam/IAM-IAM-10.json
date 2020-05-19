@@ -1,5 +1,5 @@
 {
-  "Identifier": "IAM-IAM-15",
+  "Identifier": "IAM-IAM-10",
   "Guardrail": "Check iam:PassRole permission is appropriately scoped for approved roles for passing and scope the trust policy for the intended target AWS Services.",
   "Rationale": "PassRole provides ability for user to handoff and associate a role to a particular service. This can be potentially harmful, such as in a scenario where the user passes a privileged role to EC2 instances he/she has access to Passrole should be appropriately scoped with the Resources element of the IAM Policy statement for passing only approved roles. Specify the trust policy for the targeted AWS Service.",
   "Remediation": "Update Resources element of the iam:PassRole to specify the approved roles to be passed and scope appropriately to the specific AWS Services. Update the trust policy to scope the target AWS Service for the service role.",

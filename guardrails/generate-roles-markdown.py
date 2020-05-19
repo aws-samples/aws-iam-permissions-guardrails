@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import json
 import pandas
+import csv
 
 prefix="../docs/guardrails"
 iam_roles_filename=f"{prefix}/iam-role-checks.md"
@@ -32,9 +33,9 @@ iam_roles_header="""
 
 names = {}
 with open("names.csv") as f:
-    for line in f:
-       (key, val) = line.split("=")
-       names[key] = val.strip()
+  names_file=csv.DictReader(f)
+  for row in names_file:
+    names[row['servicekey']]=row
 
 def convert_string_to_list(value):
     if isinstance(value, str):
@@ -76,8 +77,12 @@ def generate_markdown_from_files(foldername):
           #print(iam_actions,data)
           if action!="*":
             api=action.split(":")[1]
-            #link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{service}/latest/APIReference/API_{api}.html)<br><br>"
-          link_iam_actions+=f"{action}<br><br>"
+          api=api.strip()
+          if "*" not in api and service in names and "docname" in names[service] and names[service]["docname"]:
+            docname=names[service]["docname"]
+            link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{docname}/latest/APIReference/API_{api}.html)<br>"
+          else:
+            link_iam_actions+=f"{action}<br>"
         data["IAM Actions"]=link_iam_actions
         if len(iam_actions)>0:
           print(iam_actions)
@@ -96,7 +101,7 @@ def generate_markdown_from_files(foldername):
   md_filename=f"{prefix}/{foldername}/guardrails.md"
   #print(md_filename)
   print(foldername)
-  service_name=names[foldername]
+  service_name=names[foldername]["servicename"]
   with open(md_filename,'w') as out:
     out.write(template_header.format(name=service_name))
     out.write(recommendations_markdown)

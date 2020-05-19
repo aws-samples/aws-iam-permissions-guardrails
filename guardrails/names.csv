@@ -1,27 +1,28 @@
-cloudtrail=Amazon CloudTrail
-codecommit=AWS CodeCommit
-ec2=Amazon Elastic Compute Cloud (EC2)
-ecr=Amazon Elastic Container Registry (ECR)
-elasticsearch=Amazon ElasticSearch Service
-guardduty=Amazon GuardDuty
-iam=AWS Identity and Access Management (IAM)
-kms=AWS Key Management Service (KMS)
-lambda=AWS Lambda
-rds=Amazon Relational Database Service (RDS)
-s3=Amazon Simple Storage Service (S3)
-s3-access-points=Amazon Simple Storage Service (S3) Access Points
-secretsmanager=AWS Secrets Manager
-ses=Amazon Simple Email Service (SES)
-sqs=Amazon Simple Queue Service (SQS)
-ssm=Amazon Systems Manager (SSM)
-sts=Amazon Security Token Service (STS)
-billing=AWS Billing
-budgets=AWS Budgets
-account=AWS Accounts
-cloudformation=AWS CloudFormation
-cloudwatch=Amazon CloudWatch
-config=AWS Config
-glacier=Amazon S3 Glacier
-organizations=AWS Organizations
-ram=AWS Resource Access Manager
-sns=Amazon Simple Notification Service
+servicekey,servicename,docname
+cloudtrail,Amazon CloudTrail,awscloudtrail
+codecommit,AWS CodeCommit,codecommit
+ec2,Amazon Elastic Compute Cloud (EC2),AWSEC2
+ecr,Amazon Elastic Container Registry (ECR),AmazonECR
+elasticsearch,Amazon ElasticSearch Service,
+guardduty,Amazon GuardDuty
+iam,AWS Identity and Access Management (IAM),IAM
+kms,AWS Key Management Service (KMS),kms
+lambda,AWS Lambda
+rds,Amazon Relational Database Service (RDS)
+s3,Amazon Simple Storage Service (S3)
+s3-access-points,Amazon Simple Storage Service (S3) Access Points
+secretsmanager,AWS Secrets Manager
+ses,Amazon Simple Email Service (SES)
+sqs,Amazon Simple Queue Service (SQS)
+ssm,Amazon Systems Manager (SSM)
+sts,Amazon Security Token Service (STS)
+billing,AWS Billing
+budgets,AWS Budgets
+account,AWS Accounts
+cloudformation,AWS CloudFormation
+cloudwatch,Amazon CloudWatch
+config,AWS Config
+glacier,Amazon S3 Glacier
+organizations,AWS Organizations
+ram,AWS Resource Access Manager
+sns,Amazon Simple Notification Service

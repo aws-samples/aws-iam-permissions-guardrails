@@ -1,0 +1,33 @@
+{
+  "Identifier": "IAM-KMS-9",
+  "Guardrail": "Check that only authorized administrative Principals are allowed AWS KMS administrative permissions.",
+  "Rationale": "AWS Key Management Service (KMS) makes it easy for you to create and manage cryptographic keys and control their use across a wide range of AWS services and in your applications. It is important that access control to the management of your keys is only performed by authorized administrative key management administrators.",
+  "Remediation": "Verify that KMS administrative and modification permissions are explicitly denied to non-whitelisted Principals and that the KMS modification permissions don't exist in an Allow statement for any unauthorized principal.",
+  "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awskeymanagementservice.html",
+  "Policy": "KMS Key Policy and IAM Policy",
+  "IAM Actions": [
+    "kms:CancelKeyDeletion",
+    "kms:ConnectCustomKeyStore",
+    "kms:CreateAlias",
+    "kms:CreateCustomKeyStore",
+    "kms:CreateGrant",
+    "kms:CreateKey",
+    "kms:DeleteAlias",
+    "kms:DeleteCustomKeyStore",
+    "kms:DeleteImportedKeyMaterial",
+    "kms:DisableKey",
+    "kms:DisableKeyRotation",
+    "kms:DisconnectCustomKeyStore",
+    "kms:ImportKeyMaterial",
+    "kms:PutKeyPolicy",
+    "kms:RetireGrant",
+    "kms:RevokeGrant",
+    "kms:ScheduleKeyDeletion",
+    "kms:TagResource",
+    "kms:UntagResource",
+    "kms:UpdateAlias",
+    "kms:UpdateCustomKeyStore",
+    "kms:UpdateKeyDescription"
+  ],
+  "Authorized Principals": ""
+}
