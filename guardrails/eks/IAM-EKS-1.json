@@ -1,0 +1,23 @@
+{
+  "Identifier": "IAM-EKS-1",
+  "Guardrail": "Check that the management of your EKS clusters is for authorized principals only.",
+  "Rationale": "It is important that access control to the management of your EKS clusters is only performed by your authorized principals. Protect against unauthorized modifications or changes to your EKS clusters by limiting access to only your administrative principals.",
+  "Remediation": "",
+  "References": "",
+  "Policy": "IAM",
+  "IAM Actions": [
+    "eks:CreateCluster",
+    "eks:CreateFargateProfile",
+    "eks:CreateNodegroup",
+    "eks:DeleteCluster",
+    "eks:DeleteFargateProfile",
+    "eks:DeleteNodegroup",
+    "eks:TagResource",
+    "eks:UntagResource",
+    "eks:UpdateClusterConfig",
+    "eks:UpdateClusterVersion",
+    "eks:UpdateNodegroupConfig",
+    "eks:UpdateNodegroupVersion"
+  ],
+  "Authorized Principals": ""
+}

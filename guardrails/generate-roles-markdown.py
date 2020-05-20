@@ -52,10 +52,15 @@ def generate_markdown_from_files(foldername):
   for filename in files:
     #print(filename)
     with open(f"{foldername}/{filename}") as json_file:
+      #print(f"{json_file}")
       data=json.load(json_file)
       if "SCP-Type" in data:
         continue
 
+      if "Identifier" in data:
+        identifier=data["Identifier"]
+        identifier_link=f'<a id="{identifier}" href="#{identifier}" >{identifier}</a>'
+        data["Identifier"]=identifier_link
       if "Authorized Principals" in data:
         del data["Authorized Principals"]
       #print(len(data))
@@ -80,7 +85,10 @@ def generate_markdown_from_files(foldername):
           api=api.strip()
           if "*" not in api and service in names and "docname" in names[service] and names[service]["docname"]:
             docname=names[service]["docname"]
-            link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{docname}/latest/APIReference/API_{api}.html)<br>"
+            if "s3"==service:
+              link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{docname}/latest/API/API_{api}.html)<br>"
+            else:
+              link_iam_actions+=f"[{service}:{api}](https://docs.aws.amazon.com/{docname}/latest/APIReference/API_{api}.html)<br>"
           else:
             link_iam_actions+=f"{action}<br>"
         data["IAM Actions"]=link_iam_actions
@@ -91,6 +99,9 @@ def generate_markdown_from_files(foldername):
             del data["Policy"]
           iam_actions_frames.append(data)
       frames.append(data)
+
+  if not iam_actions_frames:
+    return ""  
 
   recommendations=pandas.DataFrame(frames)
   #print(result.shape)
