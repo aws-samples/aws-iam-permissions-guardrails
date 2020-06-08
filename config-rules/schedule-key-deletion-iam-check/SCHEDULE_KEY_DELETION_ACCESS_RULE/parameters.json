@@ -1,0 +1,12 @@
+{
+  "Version": "1.0",
+  "Parameters": {
+    "RuleName": "SCHEDULE_KEY_DELETION_ACCESS_RULE",
+    "SourceRuntime": "python3.6-lib",
+    "CodeKey": "SCHEDULE_KEY_DELETION_ACCESS_RULE.zip",
+    "InputParameters": "{\"WhitelistedPrincipalArns\": [\"arn:aws:iam::123456789123:role/KeyAdministratorRole\"]}",
+    "OptionalParameters": "{}",
+    "SourceEvents": "AWS::KMS::Key"
+  },
+  "Tags": "[]"
+}

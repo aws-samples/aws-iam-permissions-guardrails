@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'Create role in member accounts to be used by organization rule in master account.'
+Parameters:
+  MasterLambdaFunctionRoleArn:
+    Description: Role Arn of Organization Config Rule Lambda Function in Master account.
+    Type: String
+Metadata:
+  'AWS::CloudFormation::Interface':
+    ParameterGroups:
+      - Label:
+          default: Organization Config Rule Lambda Role Arn in master account
+        Parameters:
+          - MasterLambdaFunctionRoleArn
+    ParameterLabels:
+      MasterLambdaFunctionRoleArn:
+        default: >-
+          REQUIRED: Role Arn of Organization Config Rule Lambda Function in Master account.
+Resources:
+  ExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: key-evaluation-execution-role
+      Path: /
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: MasterAccountConfigTrustPolicy
+            Effect: Allow
+            Principal:
+              AWS: !Ref MasterLambdaFunctionRoleArn
+            Action: 'sts:AssumeRole'
+  ExecutionRolePolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties: 
+      Description: Permissions to evaluation key policies and report to config services
+      ManagedPolicyName: ScheduleKeyDeletionAccessRuleEvaluation
+      Path: /
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - config:PutEvaluations
+              - kms:ListKeys
+              - kms:DescribeKey
+              - kms:GetKeyPolicy
+              - iam:SimulateCustomPolicy
+            Resource: '*'
+          - Effect: Allow
+            Action:
+              - config:GetComplianceDetailsByConfigRule
+            Resource: !Sub 'arn:${AWS::Partition}:config:*:${AWS::AccountId}:config-rule/aws-service-rule/config-multiaccountsetup.amazonaws.com/config-rule-*'
+      Roles: 
+        - !Ref ExecutionRole
