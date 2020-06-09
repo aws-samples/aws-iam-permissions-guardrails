@@ -5,6 +5,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+import distutils
 import boto3
 import argparse
 import sys
@@ -13,34 +14,35 @@ import json
 
 lambda_function_arn=""
 execution_role_name = "key-evaluation-execution-role"
-whiteListed_principlal_arns = ""
+whitelisted_aws_principal_arns=""
 excluded_accts=""
 region=""
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--region", "-r", help="Set deployment region")
+parser.add_argument("--region", "-r", help="Set deployment region", required=True)
 parser.add_argument("--functionarn", "-f", help="Lambda function arn that backs up organization config rule")
 parser.add_argument("--rolename", "-n", help="Key evaluation execution role name")
-parser.add_argument("--whitelitedprincipalarns", "-w", help="Comma seperated whitelisted principals arns")
+parser.add_argument("--whitelistedawsprincipalarns", "-waws", help="Comma separated whitelisted AWS principals arns")
 parser.add_argument("--excludedaccts", "-a", help="Comma seperated accounts ids to exclude from the organization config rule deployment")
 
 # read arguments from the command line
 args = parser.parse_args()
+logger.info(f"args {args}")
 
 if args.region:
-    print("Deployment region is:  %s" % args.region)
+    logger.info("Deployment region is:  %s" % args.region)
     region = args.region
 if args.functionarn:
-    print("Lambda function arn is: %s" % args.functionarn)
+    logger.info("Lambda function arn is: %s" % args.functionarn)
     lambda_function_arn = args.functionarn
 if args.rolename:
-    print("Key evaluation execution role name is: %s" % args.rolename)
+    logger.info("Key evaluation execution role name is: %s" % args.rolename)
     execution_role_name = args.rolename
-if args.whitelitedprincipalarns:
-    print("Whitelisted principals arns are: %s" % args.whitelitedprincipalarns)
-    whiteListed_principlal_arns = args.whitelitedprincipalarns
+if args.whitelistedawsprincipalarns:
+    logger.info("Whitelisted AWS principals arns are: %s" % args.whitelistedawsprincipalarns)
+    whitelisted_aws_principal_arns = args.whitelistedawsprincipalarns
 if args.excludedaccts:
-    print("Excluded accounts ids are : %s" % args.excludedaccts)
+    logger.info("Excluded accounts ids are : %s" % args.excludedaccts)
     excluded_accts = args.excludedaccts
 
 try:
@@ -51,15 +53,17 @@ try:
       lambda_function_arn="arn:aws:lambda:{}:{}:function:RDK-Rule-Function-SCHEDULE_KEY_DELETION_ACCESS_RULE".format((region), (account_id))
       logger.info("Lambda Function Arn {}".format((lambda_function_arn)))
 
-    whiteListed_principlal_arns=whiteListed_principlal_arns.split(",") if whiteListed_principlal_arns else []
+    logger.info(f"whitelisted_aws_principal_arns {whitelisted_aws_principal_arns}")
+    whitelisted_aws_principal_arns=whitelisted_aws_principal_arns.split(",") if whitelisted_aws_principal_arns else []
 
+    logger.info(f"Execution Role Name {execution_role_name} Whitelisted AWS Principal Arns {whitelisted_aws_principal_arns}") 
     rule_input_parameters = {
         "ExecutionRoleName":execution_role_name,
-        "WhitelistedPrincipalArns":whiteListed_principlal_arns
+        "WhitelistedAWSPrincipalArns":whitelisted_aws_principal_arns
     }
 
     response = client.put_organization_config_rule(
-            OrganizationConfigRuleName='ScheduleKeyDeletionAccess',
+            OrganizationConfigRuleName='ScheduleKeyDeletionAccess7',
             OrganizationCustomRuleMetadata={
                 "Description": "Organization config rule checking if allows scheduling key deletion.",
                 "LambdaFunctionArn": lambda_function_arn,
@@ -76,7 +80,7 @@ try:
     logger.info("OrganizationConfigRuleArn is {}".format((OrganizationConfigRuleArn)))
 except Exception as e:
     logger.exception("Error creationg Organizational Config Rule")
-    print(e.__dict__)
+    logger.info(e.__dict__)
     e = sys.exc_info()[0]
     if e.response != None:
-        print("Detailed error: ",e.response )
+        logger.info("Detailed error: ",e.response )
