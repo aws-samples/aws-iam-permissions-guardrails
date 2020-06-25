@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+gem 'jekyll-relative-links'
 
 source 'https://rubygems.org'
 

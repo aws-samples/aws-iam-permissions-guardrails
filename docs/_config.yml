@@ -3,3 +3,11 @@ description:
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-architect
+github:
+  is_project_page: true
+  repository_url: https://test
+#plugins:
+#  - jekyll-relative-links
+#relative_links:
+#  enabled:     true
+#  collections: false
