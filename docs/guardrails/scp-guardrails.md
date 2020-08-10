@@ -3,7 +3,31 @@ layout: default
 ---
 
 
-
+# Table of Contents
+* [Prevent account region enable and disable actions](#scp-account-1)
+* [Prevent billing modification actions](#scp-billing-1)
+* [Prevent modifications to specific CloudFormation resources](#scp-cloudformation-1)
+* [Prevent modifications to specific CloudTrails](#scp-cloudtrail-1)
+* [Prevent deleting specific CloudWatch Log groups and streams](#scp-cloudwatch-1)
+* [Prevent enabling and disabling AWS Config](#scp-config-1)
+* [Prevent modifications to tagged AWS Config rules](#scp-config-2)
+* [Prevent disabling default EBS encryption](#scp-ec2-1)
+* [Prevent Creating Default VPC and Subnet](#scp-ec2-2)
+* [Prevent Glacier Deletion](#scp-glacier-1)
+* [Prevent disabling and modifying GuardDuty](#scp-guardduty-1)
+* [Prevent the root user from performing any actions.](#scp-iam-1)
+* [Prevent iam:UpdateAssumeRolePolicy on specific IAM roles.](#scp-iam-4)
+* [Prevent specific IAM actions](#scp-iam-5)
+* [Prevent KMS Key Deletion](#scp-kms-1)
+* [Prevent Modifications to Specific Lambda Functions](#scp-lambda-1)
+* [Prevent organization leave, delete, or remove actions](#scp-organizations-1)
+* [Prevent sharing resources to accounts outside your organization](#scp-ram-1)
+* [Prevent disabling S3 account public access block](#scp-s3-1)
+* [Prevent S3 unencrypted object uploads](#scp-s3-2)
+* [Prevent S3 public object access](#scp-s3-3)
+* [Prevent Specific S3 Buckets from Deletion](#scp-s3-4)
+* [Prevent Access to Specific S3 Buckets](#scp-s3-5)
+* [Prevent Modifications to Specific SNS Topics](#scp-sns-1)
 
 
 
@@ -54,7 +78,6 @@ layout: default
 
 
 
-
 ## SCP-BILLING-1 
 ## Prevent billing modification actions
 
@@ -95,8 +118,6 @@ layout: default
     }
 }
 ```
-
-
 
 
 
@@ -177,7 +198,6 @@ layout: default
 
 
 
-
 ## SCP-CLOUDTRAIL-1 
 ## Prevent modifications to specific CloudTrails
 
@@ -227,7 +247,6 @@ layout: default
 
 
 
-
 ## SCP-CLOUDWATCH-1 
 ## Prevent deleting specific CloudWatch Log groups and streams
 
@@ -267,8 +286,6 @@ layout: default
     }
 }
 ```
-
-
 
 
 
@@ -385,7 +402,6 @@ layout: default
 
 
 
-
 ## SCP-EC2-1 
 ## Prevent disabling default EBS encryption
 
@@ -484,10 +500,6 @@ layout: default
 
 
 
-
-
-
-
 ## SCP-GLACIER-1 
 ## Prevent Glacier Deletion
 
@@ -520,7 +532,6 @@ layout: default
     ]
 }
 ```
-
 
 
 
@@ -575,7 +586,6 @@ layout: default
     }
 }
 ```
-
 
 
 
@@ -716,7 +726,6 @@ layout: default
 
 
 
-
 ## SCP-KMS-1 
 ## Prevent KMS Key Deletion
 
@@ -756,7 +765,6 @@ layout: default
     }
 }
 ```
-
 
 
 
@@ -821,7 +829,6 @@ layout: default
 
 
 
-
 ## SCP-ORGANIZATIONS-1 
 ## Prevent organization leave, delete, or remove actions
 
@@ -869,7 +876,6 @@ layout: default
 
 
 
-
 ## SCP-RAM-1 
 ## Prevent sharing resources to accounts outside your organization
 
@@ -906,8 +912,6 @@ layout: default
     }
 }
 ```
-
-
 
 
 
@@ -1179,10 +1183,6 @@ layout: default
 
 
 
-
-
-
-
 ## SCP-SNS-1 
 ## Prevent Modifications to Specific SNS Topics
 
@@ -1226,9 +1226,6 @@ layout: default
     }
 }
 ```
-
-
-
 
 
 

@@ -13,19 +13,8 @@ layout_header="""---
 layout: default
 ---
 
-"""
 
-scp_header="""
-
-
-## {identifier} {guardrail}
-
-Rationale
-{rationales}
-
-References
-{references}
-
+# Table of Contents
 """
 
 def to_pretty_json(value):
@@ -43,6 +32,7 @@ def get_template():
 
 def generate_markdown_from_files(foldername):
   scp_frames=[]
+  scp_guardrails=[]
 
   #print("folder",foldername)
   files=os.listdir(foldername)
@@ -61,14 +51,18 @@ def generate_markdown_from_files(foldername):
           data["conditions"]=conditions
           print(conditions)
         scp_frames.append(data)
+        identifier=data['Identifier'].lower()
+        scp_guardrails.append(f"* [{data['Guardrail']}](#{identifier})")
 
   scp_template=get_template()
   outputtext=scp_template.render(scps=scp_frames)
   print(outputtext)
+  print(scp_guardrails)
   with open(scp_filename,'a') as out:
     out.write(outputtext)
     out.write("\n\n\n\n\n\n")
 
+  return scp_guardrails
 
 if __name__ == "__main__":
   with open(scp_filename,'w') as out:
@@ -81,10 +75,8 @@ if __name__ == "__main__":
   for filename in files:
     if os.path.isdir(filename):
       index=generate_markdown_from_files(filename)
-      indexes.append(index)
+      if index: indexes.append(index)
 
-  """
   for index in indexes:
-    print(index)
-    print("")
-  """
+    for i in index:
+      print(i) 
