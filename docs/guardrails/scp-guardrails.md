@@ -481,6 +481,13 @@ layout: default
 
 
 
+
+
+
+
+
+
+
 ## SCP-GLACIER-1 
 ## Prevent Glacier Deletion
 
@@ -840,8 +847,7 @@ layout: default
   "Effect": "Deny",
   "Action": [
         "organizations:LeaveOrganization", 
-        "organizations:DeleteOrganization", 
-        "organizations:RemoveAccountFromOrganization" 
+        "organizations:DeleteOrganization" 
     ],
   "Resource": [
         "*" 
@@ -1126,7 +1132,6 @@ layout: default
         "s3:GetObjectVersionTagging", 
         "s3:GetObjectVersionTorrent", 
         "s3:GetReplicationConfiguration", 
-        "s3:HeadBucket", 
         "s3:ListAllMyBuckets", 
         "s3:ListBucket", 
         "s3:ListBucketMultipartUploads", 
