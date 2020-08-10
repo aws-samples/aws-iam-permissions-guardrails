@@ -21,8 +21,7 @@
     "SCP-Type": "Prevent-All-Except",
     "IAM Actions": [
         "organizations:LeaveOrganization",
-        "organizations:DeleteOrganization",
-        "organizations:RemoveAccountFromOrganization"
+        "organizations:DeleteOrganization"
     ],
     "Resource": ["*"],
     "Condition": [
