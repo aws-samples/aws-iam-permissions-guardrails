@@ -46,7 +46,6 @@
         "s3:GetObjectVersionTagging",
         "s3:GetObjectVersionTorrent",
         "s3:GetReplicationConfiguration",
-        "s3:HeadBucket",
         "s3:ListAllMyBuckets",
         "s3:ListBucket",
         "s3:ListBucketMultipartUploads",
