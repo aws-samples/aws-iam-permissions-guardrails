@@ -1,0 +1,8 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Enables IAM Access Analyzer Organization Analyzer
+Resources:
+  Analyzer:
+    Type: 'AWS::AccessAnalyzer::Analyzer'
+    Properties:
+      AnalyzerName: !Sub 'AccessAnalyzerOrganization-${AWS::Region}-${AWS::AccountId}'
+      Type: ORGANIZATION
