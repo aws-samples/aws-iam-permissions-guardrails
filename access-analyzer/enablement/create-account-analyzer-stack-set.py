@@ -63,7 +63,6 @@ waiter = Waiter('StackSetOperationComplete', waiter_config, cloudformation_clien
 
 ec2_client = boto3.client('ec2')
 all_regions = [region['RegionName'] for region in ec2_client.describe_regions()['Regions']]
-all_regions.remove("ap-northeast-3")
 
 response=cloudformation_client.create_stack_instances(
   StackSetName=StackSetName,
