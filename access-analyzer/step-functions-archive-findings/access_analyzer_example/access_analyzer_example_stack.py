@@ -1,3 +1,5 @@
+import os, subprocess
+
 from aws_cdk import (
   core,
   aws_accessanalyzer as accessanalyzer,
@@ -21,10 +23,14 @@ class AccessAnalyzerExampleStack(core.Stack):
 
     email_subscription_parameter=core.CfnParameter(self,
       "EmailSubscriptionParameter",
-      description="Email Address for Notification Subscription"
+      description="Email Address for Notification Subscription",
+      allowed_pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',
+      min_length=1,
+      constraint_description="Must be a valid email."
     )
     email_subscription=email_subscription_parameter.value_as_string
 
+    """
     ar1=accessanalyzer.CfnAnalyzer.ArchiveRuleProperty(
       rule_name="test",
       filter=[accessanalyzer.CfnAnalyzer.FilterProperty(property="principal.AWS",eq=["123456789123"])]
@@ -36,9 +42,15 @@ class AccessAnalyzerExampleStack(core.Stack):
       tags=[core.CfnTag(key="AccessAnalyzerType",value="ACCOUNT")],
       archive_rules=[ar1]
     )
+    """
 
     runtime=aws_lambda.Runtime.PYTHON_3_8
 
+    boto3_lambda_layer = self.create_dependencies_layer(
+        id="boto3layer", requirements_path="./layers/boto3/requirements.txt", output_dir="./layers/boto3"
+    )
+
+    """
     boto3_lambda_layer=aws_lambda.LayerVersion(
       self,
       "Boto3LambdaLayer",
@@ -46,6 +58,7 @@ class AccessAnalyzerExampleStack(core.Stack):
       compatible_runtimes=[runtime],
       description="Boto3 Lambda Layer"
     )
+    """
 
     context_enrichment=aws_lambda.Function(
       self,
@@ -190,3 +203,17 @@ class AccessAnalyzerExampleStack(core.Stack):
         aws_events_targets.LambdaFunction(context_enrichment)
       ]
     )
+
+  #https://github.com/aws-samples/aws-cdk-examples/issues/130
+  def create_dependencies_layer(
+      self, id: str, requirements_path: str, output_dir: str
+  ) -> aws_lambda.LayerVersion:
+      # Install requirements for layer
+      if not os.environ.get("SKIP_PIP"):
+          subprocess.check_call(
+              # Note: Pip will create the output dir if it does not exist
+              f"pip install -r {requirements_path} -t {output_dir}/python".split()
+          )
+      return aws_lambda.LayerVersion(
+          self, id, code=aws_lambda.Code.from_asset(output_dir)
+      )
