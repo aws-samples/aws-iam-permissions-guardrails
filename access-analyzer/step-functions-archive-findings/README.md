@@ -12,7 +12,7 @@ This example also expects that AWS IAM Access Analyzer with the account analyzer
 ```
 cdk bootstrap
 
-cdk deploy --parameters EmailSubscriptionParameter=jjjoy@amazon.com
+cdk deploy --parameters EmailSubscriptionParameter=YOUR_EMAIL_ADDRESS_HERE
 
 ```
 
