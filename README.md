@@ -3,6 +3,7 @@
 ## Table of Contents
 * [Background](#background)
 * [Example Service Control Policies](#example-service-control-policies)
+* [Access Analyzer](#access-analyzer)
 * [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Background
@@ -17,6 +18,16 @@ These IAM Permissions Guardrails are based on collective experiences. That said,
 ## Example Service Control Policies
 
 [List](https://aws-samples.github.io/aws-iam-permissions-guardrails/guardrails/scp-guardrails.html) of example service control policies
+
+## Access Analyzer
+
+### Access Analyzer Enablement
+
+[Enablement](access-analyzer/enablement)
+
+### How to automatically archive expected IAM Access Analyzer findings
+
+[Code](access-analyzer/step-functions-archive-findings)
 
 ## Frequently Asked Questions
 
