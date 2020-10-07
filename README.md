@@ -2,7 +2,7 @@
 
 ## Table of Contents
 * [Background](#background)
-* [Example Service Control Policies] (#example-service-control-policies)
+* [Example Service Control Policies](#example-service-control-policies)
 * [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Background
