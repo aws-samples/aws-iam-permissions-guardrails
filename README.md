@@ -27,6 +27,8 @@ These IAM Permissions Guardrails are based on collective experiences. That said,
 
 ### How to automatically archive expected IAM Access Analyzer findings
 
+This is the code accompanying the blog post [How to automatically archive expected IAM Access Analyzer findings](https://aws.amazon.com/blogs/security/how-to-automatically-archive-expected-iam-access-analyzer-findings/).
+
 [Code](access-analyzer/step-functions-archive-findings)
 
 ## Frequently Asked Questions
