@@ -1,6 +1,8 @@
 
 # How to automatically archive expected IAM Access Analyzer findings
 
+This is the accompanying code to the blog post [How to automatically archive expected IAM Access Analyzer findings](https://aws.amazon.com/blogs/security/how-to-automatically-archive-expected-iam-access-analyzer-findings/).
+
 ## Prequisities
 
 This code example utilizes the [AWS Cloud Development Kit](https://aws.amazon.com/cdk/).
