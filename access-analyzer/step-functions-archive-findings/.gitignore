@@ -14,7 +14,7 @@ bin/
 
 pyvenv.cfg
 
-layers/
+#layers/
 lib/
 
 test.yaml
