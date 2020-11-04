@@ -8,6 +8,10 @@ import boto3
 #Return True to raise alert if risk level exceeds threshold
 #Return False to Archive finding
 def should_raise_alert(finding_details, tags, additional_context):
+  if "error" in finding_details:
+    logger.error(f"Error in finding {finding_details['error']} for resource {finding_details['resource']}")
+    return True
+
   if (
       finding_details["isPublic"]
       and not is_allowed_public(finding_details, tags, additional_context)
