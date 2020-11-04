@@ -30,36 +30,19 @@ class AccessAnalyzerExampleStack(core.Stack):
     )
     email_subscription=email_subscription_parameter.value_as_string
 
-    """
-    ar1=accessanalyzer.CfnAnalyzer.ArchiveRuleProperty(
-      rule_name="test",
-      filter=[accessanalyzer.CfnAnalyzer.FilterProperty(property="principal.AWS",eq=["123456789123"])]
-    )
-    analyzer=accessanalyzer.CfnAnalyzer(
-      self,
-      id="accessanalyzer",
-      type="ACCOUNT",
-      tags=[core.CfnTag(key="AccessAnalyzerType",value="ACCOUNT")],
-      archive_rules=[ar1]
-    )
-    """
-
-    runtime=aws_lambda.Runtime.PYTHON_3_8
+    #runtime=aws_lambda.Runtime.PYTHON_3_8
+    
+    boto3_lambda_layer=None
 
     boto3_lambda_layer = self.create_dependencies_layer(
         id="boto3layer", requirements_path="./layers/boto3/requirements.txt", output_dir="./layers/boto3"
     )
 
-    """
-    boto3_lambda_layer=aws_lambda.LayerVersion(
-      self,
-      "Boto3LambdaLayer",
-      code=aws_lambda.AssetCode("./layers/boto3"),
-      compatible_runtimes=[runtime],
-      description="Boto3 Lambda Layer"
-    )
-    """
 
+    is_inline=False
+
+    context_enrichment=self.create_lambda_function(boto3_lambda_layer,"./functions/context-enrichment","context_enrichment",is_inline)
+    """
     context_enrichment=aws_lambda.Function(
       self,
       "context_enrichment",
@@ -68,6 +51,7 @@ class AccessAnalyzerExampleStack(core.Stack):
       code=aws_lambda.AssetCode("./functions/context-enrichment"),
       layers=[boto3_lambda_layer]
     )
+    """
     handler_statement = iam.PolicyStatement(
       actions=[
         "iam:ListRoleTags",
@@ -98,6 +82,8 @@ class AccessAnalyzerExampleStack(core.Stack):
     )
     email_topic.add_subscription(subscriptions.EmailSubscription(email_subscription))
 
+    notification=self.create_lambda_function(boto3_lambda_layer,"./functions/notification","notification",is_inline,{"SNS_TOPIC_ARN":email_topic.topic_arn})
+    """
     notification=aws_lambda.Function(
       self,
       "notification",
@@ -107,6 +93,7 @@ class AccessAnalyzerExampleStack(core.Stack):
       layers=[boto3_lambda_layer],
       environment={"SNS_TOPIC_ARN":email_topic.topic_arn}
     )
+    """
     notification_statement=iam.PolicyStatement(
       actions=[
         "sns:Publish",
@@ -117,6 +104,8 @@ class AccessAnalyzerExampleStack(core.Stack):
     notification.add_to_role_policy(notification_statement)
     cmk_key.grant_encrypt_decrypt(notification)
 
+    archive_access_analyzer_finding=self.create_lambda_function(boto3_lambda_layer,"./functions/archive-access-analyzer-finding","archive-access-analyzer-finding",is_inline)
+    """
     archive_access_analyzer_finding=aws_lambda.Function(
       self,
       "archive-access-analyzer-finding",
@@ -125,6 +114,7 @@ class AccessAnalyzerExampleStack(core.Stack):
       code=aws_lambda.AssetCode("./functions/archive-access-analyzer-finding"),
       layers=[boto3_lambda_layer]
     )
+    """
     archive_statement=iam.PolicyStatement(
       actions=[
         "access-analyzer:UpdateFindings",
@@ -134,6 +124,8 @@ class AccessAnalyzerExampleStack(core.Stack):
     )
     archive_access_analyzer_finding.add_to_role_policy(archive_statement)
 
+    evaluate_access_analyzer_finding=self.create_lambda_function(boto3_lambda_layer,"./functions/evaluate-access-analyzer-finding","evaluate-access-analyzer-finding",is_inline)
+    """
     evaluate_access_analyzer_finding=aws_lambda.Function(
       self,
       "evaluate-access-analyzer-finding",
@@ -142,7 +134,7 @@ class AccessAnalyzerExampleStack(core.Stack):
       code=aws_lambda.AssetCode("./functions/evaluate-access-analyzer-finding"),
       layers=[boto3_lambda_layer]
     )
-
+    """
     #https://docs.aws.amazon.com/cdk/api/latest/docs/aws-stepfunctions-readme.html
     access_analyzer_handler_task=sfn.Task(
       self,
@@ -203,6 +195,32 @@ class AccessAnalyzerExampleStack(core.Stack):
         aws_events_targets.LambdaFunction(context_enrichment)
       ]
     )
+
+  def create_lambda_function(self,boto3_lambda_layer,source_path,identifier,is_inline,environment={}):
+    lambda_function=None
+    lambda_code=None
+    lambda_handler=None
+    if is_inline:
+      with open(f"{source_path}/app.py", encoding="utf8") as fp:
+          handler_code = fp.read()
+          lambda_code=aws_lambda.InlineCode(handler_code)
+          lambda_handler="index.handler"
+    else:
+      lambda_code=aws_lambda.AssetCode(source_path)
+      lambda_handler="app.handler"
+
+    lambda_function=aws_lambda.Function(
+      self,
+      identifier,
+      runtime=aws_lambda.Runtime.PYTHON_3_8,
+      handler=lambda_handler,
+      code=lambda_code,
+      environment=environment,
+    )
+    if boto3_lambda_layer:
+      lambda_function.add_layers(boto3_lambda_layer)
+    return lambda_function
+
 
   #https://github.com/aws-samples/aws-cdk-examples/issues/130
   def create_dependencies_layer(
