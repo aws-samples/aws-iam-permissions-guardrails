@@ -1,3 +1,5 @@
+from typing import List
+
 import os.path
 dirname = os.path.dirname(__file__)
 
@@ -15,8 +17,8 @@ class ScpAttachmentResource(core.Construct):
         scope: core.Construct,
         id: str,
         policy_id: str,
-        account_targets: list[str] = None,
-        organization_unit_targets: list[str] = None,
+        account_targets: List[str] = None,
+        organization_unit_targets: List[str] = None,
     ) -> None:
         super().__init__(scope, id)
 
