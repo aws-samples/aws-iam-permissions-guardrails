@@ -1,3 +1,6 @@
+import os.path
+dirname = os.path.dirname(__file__)
+
 from aws_cdk import core, aws_iam as iam, aws_lambda as _lambda
 
 from aws_cdk.core import CustomResource
@@ -24,7 +27,7 @@ class ScpAttachmentResource(core.Construct):
             handler="app.on_event",
             timeout=core.Duration.seconds(600),
             memory_size=128,
-            code=_lambda.Code.asset("./scp/attachment_lambda"),
+            code=_lambda.Code.asset(os.path.join(dirname,"attachment_lambda")),
             description="Service control policy attachment resource",
         )
 
