@@ -15,8 +15,8 @@ class ScpAttachmentResource(core.Construct):
         scope: core.Construct,
         id: str,
         policy_id: str,
-        account_targets: list[str] = [],
-        organization_unit_targets: list[str] = [],
+        account_targets: list[str] = None,
+        organization_unit_targets: list[str] = None,
     ) -> None:
         super().__init__(scope, id)
 
