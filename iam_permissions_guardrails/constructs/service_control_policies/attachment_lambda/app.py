@@ -20,8 +20,8 @@ def on_create(event):
     print("create new resource with props %s" % props)
 
     policy_id = props["PolicyId"]
-    account_targets = props["AccountTargets"]
-    organization_unit_targets = props["OrganizationUnitTargets"]
+    account_targets = props.get("AccountTargets",[])
+    organization_unit_targets = props.get("OrganizationUnitTargets",[])
 
     organizations_client = boto3.client("organizations")
     for account in account_targets:
@@ -46,11 +46,11 @@ def on_update(event):
     )
 
     policy_id = props["PolicyId"]
-    account_targets = set(props["AccountTargets"])
-    organization_unit_targets = set(props["OrganizationUnitTargets"])
+    account_targets = set(props.get("AccountTargets",[]))
+    organization_unit_targets = set(props.get("OrganizationUnitTargets",[]))
 
-    old_account_targets = set(old_props["AccountTargets"])
-    old_organization_unit_targets = set(old_props["OrganizationUnitTargets"])
+    old_account_targets = set(old_props.get("AccountTargets",[]))
+    old_organization_unit_targets = set(old_props.get("OrganizationUnitTargets",[]))
 
     account_intersection = old_account_targets.intersection(account_targets)
     to_detach_account_targets = old_account_targets - account_intersection
@@ -91,8 +91,8 @@ def on_delete(event):
     print("delete resource with props %s" % props)
 
     policy_id = props["PolicyId"]
-    account_targets = props["AccountTargets"]
-    organization_unit_targets = props["OrganizationUnitTargets"]
+    account_targets = props.get("AccountTargets",[])
+    organization_unit_targets = props.get("OrganizationUnitTargets",[])
 
     organizations_client = boto3.client("organizations")
     for account in account_targets:
