@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="iam-permissions-guardrails",  # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="Josh Joy",
     author_email="jjjoy@amazon.com",
     description="IAM Permissions Guardrails module",
