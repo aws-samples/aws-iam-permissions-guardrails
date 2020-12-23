@@ -1,7 +1,13 @@
+import logging
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 import boto3
 import json
 import os
 import uuid
+
 
 def on_event(event, context):
     print(event)
@@ -20,17 +26,35 @@ def on_create(event):
     print("create new resource with props %s" % props)
 
     policy_id = props["PolicyId"]
-    account_targets = props.get("AccountTargets",[])
-    organization_unit_targets = props.get("OrganizationUnitTargets",[])
+    account_targets = props.get("AccountTargets", [])
+    organization_unit_targets = props.get("OrganizationUnitTargets", [])
 
     organizations_client = boto3.client("organizations")
     for account in account_targets:
-        organizations_client.attach_policy(PolicyId=policy_id, TargetId=account)
+        try:
+            organizations_client.attach_policy(PolicyId=policy_id, TargetId=account)
+        except organizations_client.exceptions.DuplicatePolicyAttachmentException:
+            logger.info(f"Already attached  policy_id={policy_id} to {account}")
+            pass
+        except:
+            logger.exception(f"Error attaching policy_id={policy_id} to {account}")
+            raise
 
     for organization_unit in organization_unit_targets:
-        organizations_client.attach_policy(
-            PolicyId=policy_id, TargetId=organization_unit
-        )
+        try:
+            organizations_client.attach_policy(
+                PolicyId=policy_id, TargetId=organization_unit
+            )
+        except organizations_client.exceptions.DuplicatePolicyAttachmentException:
+            logger.info(
+                f"Already attached  policy_id={policy_id} to {organization_unit}"
+            )
+            pass
+        except:
+            logger.exception(
+                f"Error attaching policy_id={policy_id} to {organization_unit}"
+            )
+            raise
 
     physical_resource_id = str(uuid.uuid4())
     return {"PhysicalResourceId": physical_resource_id}
@@ -46,11 +70,11 @@ def on_update(event):
     )
 
     policy_id = props["PolicyId"]
-    account_targets = set(props.get("AccountTargets",[]))
-    organization_unit_targets = set(props.get("OrganizationUnitTargets",[]))
+    account_targets = set(props.get("AccountTargets", []))
+    organization_unit_targets = set(props.get("OrganizationUnitTargets", []))
 
-    old_account_targets = set(old_props.get("AccountTargets",[]))
-    old_organization_unit_targets = set(old_props.get("OrganizationUnitTargets",[]))
+    old_account_targets = set(old_props.get("AccountTargets", []))
+    old_organization_unit_targets = set(old_props.get("OrganizationUnitTargets", []))
 
     account_intersection = old_account_targets.intersection(account_targets)
     to_detach_account_targets = old_account_targets - account_intersection
@@ -68,20 +92,52 @@ def on_update(event):
 
     organizations_client = boto3.client("organizations")
     for account in to_detach_account_targets:
-        organizations_client.detach_policy(PolicyId=policy_id, TargetId=account)
+        try:
+            organizations_client.detach_policy(PolicyId=policy_id, TargetId=account)
+        except organizations_client.exceptions.PolicyNotAttachedException:
+            logger.info(f"Already detached policy_id={policy_id} to {account}")
+            pass
+        except:
+            logger.exception(f"Error attaching policy_id={policy_id} to {account}")
+            raise
 
     for organization_unit in to_detach_organization_targets:
-        organizations_client.detach_policy(
-            PolicyId=policy_id, TargetId=organization_unit
-        )
+        try:
+            organizations_client.detach_policy(
+                PolicyId=policy_id, TargetId=organization_unit
+            )
+        except organizations_client.exceptions.PolicyNotAttachedException:
+            logger.info(
+                f"Already detached policy_id={policy_id} to {organization_unit}"
+            )
+            pass
+        except:
+            logger.exception(
+                f"Error attaching policy_id={policy_id} to {organization_unit}"
+            )
+            raise
 
     for account in to_attach_account_targets:
-        organizations_client.attach_policy(PolicyId=policy_id, TargetId=account)
+        try:
+            organizations_client.attach_policy(PolicyId=policy_id, TargetId=account)
+        except organizations_client.exceptions.DuplicatePolicyAttachmentException:
+            logger.info(f"Already attached  policy_id={policy_id} to {account}")
+            pass
+        except:
+            logger.exception(f"Error attaching policy_id={policy_id} to {account}")
+            raise
 
     for organization_unit in to_attach_organization_unit_targets:
-        organizations_client.attach_policy(
-            PolicyId=policy_id, TargetId=organization_unit
-        )
+        try:
+            organizations_client.attach_policy(
+                PolicyId=policy_id, TargetId=organization_unit
+            )
+        except organizations_client.exceptions.DuplicatePolicyAttachmentException:
+            logger.info(f"Already attached  policy_id={policy_id} to {account}")
+            pass
+        except:
+            logger.exception(f"Error attaching policy_id={policy_id} to {account}")
+            raise
 
 
 def on_delete(event):
@@ -91,15 +147,32 @@ def on_delete(event):
     print("delete resource with props %s" % props)
 
     policy_id = props["PolicyId"]
-    account_targets = props.get("AccountTargets",[])
-    organization_unit_targets = props.get("OrganizationUnitTargets",[])
+    account_targets = props.get("AccountTargets", [])
+    organization_unit_targets = props.get("OrganizationUnitTargets", [])
 
     organizations_client = boto3.client("organizations")
     for account in account_targets:
-        organizations_client.detach_policy(PolicyId=policy_id, TargetId=account)
+        try:
+            organizations_client.detach_policy(PolicyId=policy_id, TargetId=account)
+        except organizations_client.exceptions.PolicyNotAttachedException:
+            logger.info(f"Already detached policy_id={policy_id} to {account}")
+            pass
+        except:
+            logger.exception(f"Error detached policy_id={policy_id} to {account}")
+            raise
 
     for organization_unit in organization_unit_targets:
-        organizations_client.detach_policy(
-            PolicyId=policy_id, TargetId=organization_unit
-        )
-
+        try:
+            organizations_client.detach_policy(
+                PolicyId=policy_id, TargetId=organization_unit
+            )
+        except organizations_client.exceptions.PolicyNotAttachedException:
+            logger.info(
+                f"Already detached policy_id={policy_id} to {organization_unit}"
+            )
+            pass
+        except:
+            logger.exception(
+                f"Error detached policy_id={policy_id} to {organization_unit}"
+            )
+            raise
