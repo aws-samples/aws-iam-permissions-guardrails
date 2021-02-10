@@ -16,6 +16,8 @@ layout: default
 * [Prevent Glacier Deletion](#scp-glacier-1)
 * [Prevent disabling and modifying GuardDuty](#scp-guardduty-1)
 * [Prevent the root user from performing any actions.](#scp-iam-1)
+* [Prevent creating access keys for the root user.](#scp-iam-2)
+* [Prevent modifications to specific IAM roles.](#scp-iam-3)
 * [Prevent iam:UpdateAssumeRolePolicy on specific IAM roles.](#scp-iam-4)
 * [Prevent specific IAM actions](#scp-iam-5)
 * [Prevent KMS Key Deletion](#scp-kms-1)
@@ -78,6 +80,7 @@ layout: default
 
 
 
+
 ## SCP-BILLING-1 
 ## Prevent billing modification actions
 
@@ -118,6 +121,8 @@ layout: default
     }
 }
 ```
+
+
 
 
 
@@ -198,6 +203,7 @@ layout: default
 
 
 
+
 ## SCP-CLOUDTRAIL-1 
 ## Prevent modifications to specific CloudTrails
 
@@ -247,6 +253,7 @@ layout: default
 
 
 
+
 ## SCP-CLOUDWATCH-1 
 ## Prevent deleting specific CloudWatch Log groups and streams
 
@@ -286,6 +293,8 @@ layout: default
     }
 }
 ```
+
+
 
 
 
@@ -402,6 +411,7 @@ layout: default
 
 
 
+
 ## SCP-EC2-1 
 ## Prevent disabling default EBS encryption
 
@@ -500,6 +510,10 @@ layout: default
 
 
 
+
+
+
+
 ## SCP-GLACIER-1 
 ## Prevent Glacier Deletion
 
@@ -532,6 +546,7 @@ layout: default
     ]
 }
 ```
+
 
 
 
@@ -594,6 +609,7 @@ layout: default
 
 
 
+
 ## SCP-IAM-1 
 ## Prevent the root user from performing any actions.
 
@@ -627,6 +643,90 @@ layout: default
   "Condition": {
         "ArnLike": {
             "aws:PrincipalArn": "arn:aws:iam::*:root"
+        }
+    }
+}
+```
+
+
+## SCP-IAM-2 
+## Prevent creating access keys for the root user.
+
+### Rationale
+
+* The root user should not have access keys per AWS security best practices.
+
+### References
+
+* [https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+
+### Test Scenarios
+
+||Test Scenario|Steps|Expected Result|
+|:-------------|:-----|:---------------|
+|1| Create access key for root user |    1. Log in to the AWS console as root user <br/>    2. Create an access key following these instructions: https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html <br/>   |  |
+
+
+### Example SCP Statement
+
+```
+{
+  "Effect": "Deny",
+  "Action": [
+        "iam:CreateAccessKey" 
+    ],
+  "Resource": [
+        "arn:aws:iam::*:root" 
+    ]
+}
+```
+
+
+## SCP-IAM-3 
+## Prevent modifications to specific IAM roles.
+
+### Rationale
+
+* Infrastructure automation frameworks use specific IAM roles that should only be modified by the automation framework.
+* Prevent IAM administrators from modifying infrastructure automation created roles.
+
+### References
+
+* [https://aws.amazon.com/controltower/](https://aws.amazon.com/controltower/)
+* [https://aws.amazon.com/solutions/aws-landing-zone/](https://aws.amazon.com/solutions/aws-landing-zone/)
+
+### Test Scenarios
+
+||Test Scenario|Steps|Expected Result|
+|:-------------|:-----|:---------------|
+|1| Modify protected role |    1. Log in to the AWS console with a role that is not the INFRASTRUCTURE_AUTOMATION_ROLE in the statement but has IAM full access <br/>    2. Modify one of the protected roles by attaching a new policy <br/>   |  |
+
+
+### Example SCP Statement
+
+```
+{
+  "Effect": "Deny",
+  "Action": [
+        "iam:AttachRolePolicy", 
+        "iam:CreateRole", 
+        "iam:DeleteRole", 
+        "iam:DeleteRolePermissionsBoundary", 
+        "iam:DeleteRolePolicy", 
+        "iam:DetachRolePolicy", 
+        "iam:PutRolePermissionsBoundary", 
+        "iam:PutRolePolicy", 
+        "iam:UpdateRole", 
+        "iam:UpdateRoleDescription" 
+    ],
+  "Resource": [
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_PREFIX]*", 
+        "arn:aws:iam::*:role/*[PARTIAL_PROTECTED_ROLE_NAME]*", 
+        "arn:aws:iam::*:role/[PROTECTED_ROLE_NAME]" 
+    ],
+  "Condition": {
+        "ArnNotLike": {
+            "aws:PrincipalARN": "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
         }
     }
 }
@@ -726,6 +826,7 @@ layout: default
 
 
 
+
 ## SCP-KMS-1 
 ## Prevent KMS Key Deletion
 
@@ -765,6 +866,7 @@ layout: default
     }
 }
 ```
+
 
 
 
@@ -829,6 +931,7 @@ layout: default
 
 
 
+
 ## SCP-ORGANIZATIONS-1 
 ## Prevent organization leave, delete, or remove actions
 
@@ -876,6 +979,7 @@ layout: default
 
 
 
+
 ## SCP-RAM-1 
 ## Prevent sharing resources to accounts outside your organization
 
@@ -912,6 +1016,8 @@ layout: default
     }
 }
 ```
+
+
 
 
 
@@ -1183,6 +1289,10 @@ layout: default
 
 
 
+
+
+
+
 ## SCP-SNS-1 
 ## Prevent Modifications to Specific SNS Topics
 
@@ -1226,6 +1336,9 @@ layout: default
     }
 }
 ```
+
+
+
 
 
 
