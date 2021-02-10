@@ -18,7 +18,7 @@
     "References": [
         "https://aws.amazon.com/controltower/", "https://aws.amazon.com/solutions/aws-landing-zone/"
     ],
-    "Policy": "SCP",
+    "Policy-Type": "SCP",
     "SCP-Type": "Prevent-For-Resource-Except",
     "IAM Actions": [
         "iam:AttachRolePolicy",
