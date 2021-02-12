@@ -3,7 +3,7 @@
 # Install
 
 ```
-pip install git+https://github.com/aws-samples/aws-iam-permissions-guardrails@59e06d0f7c26c5dd7423ebf1d74ea17dfc4829b2
+pip install git+https://github.com/aws-samples/aws-iam-permissions-guardrails@9a2ffb2d02867f11775e26b27675cbfce2afed3e
 ```
 
 # Example Usage
