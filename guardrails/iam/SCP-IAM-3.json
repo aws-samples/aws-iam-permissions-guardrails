@@ -18,7 +18,7 @@
     "References": [
         "https://aws.amazon.com/controltower/", "https://aws.amazon.com/solutions/aws-landing-zone/"
     ],
-    "Policy-Type": "SCP",
+    "Policy": "SCP",
     "SCP-Type": "Prevent-For-Resource-Except",
     "IAM Actions": [
         "iam:AttachRolePolicy",
@@ -43,6 +43,7 @@
                 "aws:PrincipalARN": "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
              }
         }
-    ]
+    ],
+    "Category": "Elective"
 }
   

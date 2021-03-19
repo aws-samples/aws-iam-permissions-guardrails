@@ -32,5 +32,6 @@
     "Resource": [
         "arn:aws:s3:::[BUCKET_TO_PROTECT]",
         "arn:aws:s3:::[BUCKET_TO_PROTECT]/*"
-    ]
+    ],
+    "Category": "Mandatory"
 }

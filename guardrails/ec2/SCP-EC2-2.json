@@ -23,5 +23,6 @@
         "ec2:CreateDefaultSubnet",
         "ec2:CreateDefaultVpc"
     ],
-    "Resource": ["*"]
+    "Resource": ["*"],
+    "Category": "Strongly recommended"
 }

@@ -33,5 +33,6 @@
                 "s3:x-amz-acl": "private"
              }
         }
-    ]
+    ],
+    "Category": "Mandatory"
 }

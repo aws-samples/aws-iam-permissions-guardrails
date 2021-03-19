@@ -14,10 +14,11 @@
             "Expected Result": "Access Denied"
         }
     ],
-    "References": ["https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"],
-    "Policy-Type": "SCP",
+    "References": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "Policy": "SCP",
     "SCP-Type": "Prevent-For-Resource",
     "IAM Actions": ["iam:CreateAccessKey"],
-    "Resource": ["arn:aws:iam::*:root"]
+    "Resource": ["arn:aws:iam::*:root"],
+    "Category": "Mandatory"
 }
   

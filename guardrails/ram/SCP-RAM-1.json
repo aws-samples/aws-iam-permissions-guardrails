@@ -27,5 +27,6 @@
                 "ram:AllowsExternalPrincipals": "true"
              }
         }
-    ]
+    ],
+    "Category": "Mandatory"
 }

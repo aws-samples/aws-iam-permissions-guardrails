@@ -34,5 +34,6 @@
                 "aws:PrincipalARN": "arn:aws:iam::*:role/[ALLOWED_LAMBDA_ROLE_NAME]"
              }
         }
-    ]
+    ],
+    "Category": "Strongly recommended"
 }
