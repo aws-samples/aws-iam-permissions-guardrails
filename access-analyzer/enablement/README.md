@@ -18,7 +18,7 @@ You might need to use the excluded regions if your billing account has enabled o
 ```
 python3 create-account-analyzer-stack-set.py  --excluded_regions=EXCLUDED_REGIONS_HERE
 ```
-# Enabling an Organization analyzer for all regions
+# Enabling an Organization Analyzer for all regions
 
 The following creates an organization analyzer in your delegated account in all regions.
 
