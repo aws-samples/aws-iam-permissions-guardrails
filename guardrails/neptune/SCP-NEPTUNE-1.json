@@ -1,0 +1,36 @@
+{
+    "Identifier": "SCP-NEPTUNE-1",
+    "Guardrail": "Prevent creation of unencrypted Neptune databases",
+    "Rationale": [
+        "As a security best practice, customers should encrypt their databases."
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create unencrypted Neptune DB",
+            "Steps": [
+                "Log in to the AWS console with a role that has access to Amazon Neptune", 
+                "Goto Databases, and create database , under Additional Configuration, uncheck Encryption"
+            ],
+            "Expected-Result": "Creation failed with Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/neptune/latest/userguide/encrypt.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except-Condition", 
+    "IAM Actions": ["rds:CreateDBCluster"],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "Bool":{
+                "rds:StorageEncrypted": "false"
+            },
+            "StringEqualsIgnoreCase": {
+                "rds:DatabaseEngine": [
+                    "graphdb"
+                ]
+            }
+        }
+    ]
+}
