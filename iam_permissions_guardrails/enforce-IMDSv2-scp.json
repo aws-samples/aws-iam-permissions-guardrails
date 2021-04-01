@@ -1,0 +1,33 @@
+{
+            "Sid": "RequireImdsV2",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringNotEquals": {
+                    "ec2:MetadataHttpTokens": "required"
+                }
+            }
+        },
+        {
+            "Sid": "RequireAllEc2RolesToUseV2",
+            "Effect": "Deny",
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "NumericLessThan": {
+                    "ec2:RoleDelivery": "2.0"
+                }
+            }
+        },
+        {
+            "Sid": "AllowOnlyImdsAdminsToModifySettings",
+            "Effect": "Deny",
+            "Action": "ec2:ModifyInstanceMetadataOptions",
+            "Resource": "*",
+            "Condition": {
+                "ArnNotLike": {
+                    "ARN-FOR-ADMINISTRATOR-ROLE"
+                }
+            }
+        }
