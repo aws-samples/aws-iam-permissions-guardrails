@@ -38,5 +38,6 @@
                 "aws:ResourceTag/system": "[SYSTEM_NAME]"
              }
         }
-    ]
+    ],
+    "Category": "Strongly recommended"
 }

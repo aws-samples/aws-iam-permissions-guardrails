@@ -25,5 +25,6 @@
         "glacier:DeleteArchive",
         "glacier:DeleteVault"
     ],
-    "Resource": ["arn:aws:glacier:*:*:vaults/*"]
+    "Resource": ["arn:aws:glacier:*:*:vaults/*"],
+    "Category": "Mandatory"
 }

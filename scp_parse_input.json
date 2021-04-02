@@ -1,0 +1,45 @@
+{
+    "Mandatory": {
+        "INFRASTRUCTURE_AUTOMATION_ROLE": "infra_role",
+        "ENCRYPTION_DELETE_KEY_ROLE": "key_role",
+        "ALLOWED_ROLE_NAME": "allowed_role",
+        "BUCKET_TO_PROTECT": "prod_bucket",
+        "CLOUDTRAIL_NAME": "sample_cloudtrail"
+    },
+    "Additional": {
+        "SCPs": ["SCP-IAM-3","SCP-S3-5"],
+        "SCP-CLOUDWATCH-1": {
+            "LOG_GROUP_PREFIX": ""
+        },
+        "SCP-S3-5": {
+            "SECURITY_ROLE": "security_role",
+            "CONFIG_RECORDER_ROLE": "config_rec_role"
+        },
+        "SCP-SNS-1": {
+            "SECURITY_ROLE": "security_role",
+            "SNS_TOPIC_TO_PROTECT": ""
+        },
+        "SCP-CONFIG-2": {
+            "SYSTEM_NAME": ""
+        },
+        "SCP-IAM-3": {
+             "PROTECTED_ROLE_PREFIX": "pr_role_pref",
+             "PARTIAL_PROTECTED_ROLE_NAME": "partial_protect_role",
+             "PROTECTED_ROLE_NAME": "protect_role"
+        },
+        "SCP-IAM-4": {
+             "PROTECTED_ROLE_PREFIX": "",
+             "PARTIAL_PROTECTED_ROLE_NAME": "",
+             "PROTECTED_ROLE_NAME": "",
+             "ALLOWED_LAMBDA_ROLE_NAME": ""
+        },
+        "SCP-LAMBDA-1": {
+            "INFRASTRUCTURE_AUTOMATION_PREFIX": ""
+        },
+        "SCP-CLOUDFORMATION-1": {
+            "STACKSET_PREFIX": "",
+            "STACK_PREFIX": "",
+            "STACK_NAME": ""
+        }
+    }
+}

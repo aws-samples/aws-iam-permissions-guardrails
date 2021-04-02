@@ -28,6 +28,7 @@
                 "aws:PrincipalArn": "arn:aws:iam::*:root"
             }
         }
-    ]
+    ],
+    "Category": "Mandatory"
 }
   

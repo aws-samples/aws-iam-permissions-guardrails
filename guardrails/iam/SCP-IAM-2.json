@@ -18,6 +18,7 @@
     "Policy-Type": "SCP",
     "SCP-Type": "Prevent-For-Resource",
     "IAM Actions": ["iam:CreateAccessKey"],
-    "Resource": ["arn:aws:iam::*:root"]
+    "Resource": ["arn:aws:iam::*:root"],
+    "Category": "Mandatory"
 }
   

@@ -43,6 +43,7 @@
                 "aws:PrincipalARN": "arn:aws:iam::*:role/[INFRASTRUCTURE_AUTOMATION_ROLE]"
              }
         }
-    ]
+    ],
+    "Category": "Elective"
 }
   
