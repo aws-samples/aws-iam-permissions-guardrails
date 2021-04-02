@@ -23,6 +23,8 @@ class ScpPolicyResource(core.Construct):
 
         POLICY_ID_LOOKUP = "Policy.PolicySummary.Id"
 
+        self.service_control_policy_string = service_control_policy_string
+        
         # https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Organizations.html
         # https://docs.aws.amazon.com/cdk/api/latest/docs/custom-resources-readme.html#physical-resource-id-parameter
         on_create_policy = cr.AwsSdkCall(
