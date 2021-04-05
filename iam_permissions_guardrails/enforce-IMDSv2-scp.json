@@ -31,3 +31,112 @@
                 }
             }
         }
+
+
+
+{
+    "Identifier": "IMDSv2-SCP-1",
+    "Guardrail": "This SCP will enforce the usage of v2 (token required) metadata configuration for launching an EC2 instance",
+    "Rationale": [
+        "With IMDSV2, AWS has introduced a token-based authentication for requesting instance metadata.", 
+        "By default one can use either IMDSv1 or IMDSv2 to access instance metadata.", 
+        "As a security best practice, it is recommended to configure EC2 instances to use IMDSv2.", 
+        "This SCP enforces multiple policies", 
+        "(1) it will ensure that EC2 instances can be launched only if IMDSV2 is configured on the instance", 
+        "(ii) users/applications can retrieve metadata on an instance only if they use IMDSv2," 
+        "(iii) only authorized roles are allowed to modify the instance metadata configuration on an EC2 instance"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario1": "Launch instance with metadata version v1 and v2",
+            "Steps": [
+                "Log in to the AWS console with a role that has access to Amazon EC2", 
+                "Goto Instances, and Launch Instances , under Configure Instance Details, select V1 and V2 (token optional) for Metadata version. Review and launch the instance after selecting all other instance configurations"
+            ],
+            "Expected-Result": "Launch failed with Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Deny-All-Except-Condition", 
+    "IAM Actions": ["ec2:RunInstances"],
+    "Resource": ["*"],
+    "Condition": {
+                "StringNotEquals": {
+                    "ec2:MetadataHttpTokens": "required"
+                }
+            }
+},
+{
+    "Identifier": "IMDSv2-SCP-2",
+    "Guardrail": "This SCP will enforce the usage of IMDSv2 to access instance metadata for an EC2 instance",
+    "Rationale": [
+        "With IMDSV2, AWS has introduced a token-based authentication for requesting instance metadata.", 
+        "By default one can use either IMDSv1 or IMDSv2 to access instance metadata.", 
+        "As a security best practice, it is recommended to configure EC2 instances to use IMDSv2.", 
+        "This SCP enforces multiple policies", 
+        "(1) it will ensure that EC2 instances can be launched only if IMDSV2 is configured on the instance", 
+        "(ii) users/applications can retrieve metadata on an instance only if they use IMDSv2," 
+        "(iii) only authorized roles are allowed to modify the instance metadata configuration on an EC2 instance"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario1": "Retrieve instance metadata using the command format for IMDSv1 ",
+            "Steps": [
+                "Log in to the EC2 instance that has metadata version V1 and V2 (token optional) configuration. Run curl http://169.254.169.254/latest/meta-data/"
+            ],
+            "Expected-Result": "Command fails with 401 - unauthorized access"  
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Deny-All-Except-Condition", 
+    "IAM Actions": ["ec2:RunInstances"],
+    "Resource": ["*"],
+    "Condition": {
+                "NumericLessThan": {
+                    "ec2:RoleDelivery": "2.0"
+                }
+            }
+},
+{
+    "Identifier": "IMDSv2-SCP-3",
+    "Guardrail": "This SCP will allow only authorized roles to modify the instance metadata configuration on an EC2 instance",
+    "Rationale": [
+        "With IMDSV2, AWS has introduced a token-based authentication for requesting instance metadata.", 
+        "By default one can use either IMDSv1 or IMDSv2 to access instance metadata.", 
+        "As a security best practice, it is recommended to configure EC2 instances to use IMDSv2.", 
+        "This SCP enforces multiple policies", 
+        "(1) it will ensure that EC2 instances can be launched only if IMDSV2 is configured on the instance", 
+        "(ii) users/applications can retrieve metadata on an instance only if they use IMDSv2," 
+        "(iii) only authorized roles are allowed to modify the instance metadata configuration on an EC2 instance"
+    ],  
+    "Test Scenarios": [
+        {
+            "Test-Scenario1": "Modify instance metadata configuration",
+            "Steps": [
+                "Configure AWS CLI on your local machine using a role that is not authorized by this SCP",
+                "Run modify-instance-metadata-options to modify instance metadata parameters on a running or stopped instance",
+                "sample CLI command: aws ec2 modify-instance-metadata-options --instance-id i-1234567810azddff0 --http-tokens optional"
+            ],
+            "Expected-Result": "Command fails with authorized failure message"  
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html",
+        "https://docs.aws.amazon.com/cli/latest/reference/ec2/modify-instance-metadata-options.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Deny-All-Except-Condition", 
+    "IAM Actions": ["ec2:ModifyInstanceMetadataOptions"],
+    "Resource": ["*"],
+    "Condition": {
+                "ArnNotLike": {
+                    "ARN-FOR-AUTHORIZED-EC2-ADMINISTRATOR-ROLE"
+                }
+            }
+}
