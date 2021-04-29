@@ -37,7 +37,6 @@
 			"Sid": "DenyLakeFormationAdministratorOperations",
 			"Effect": "Deny",
 			"Action": [
-				"lakeformation:GetDataLakeSettings",
                 "lakeformation:PutDataLakeSettings"
 			],
 			"Resource": [
