@@ -9,7 +9,7 @@
         "A principal is granted the necessary authorizations by the data lake administrator or another principal with the permissions to grant Lake Formation permissions.",
         "When you grant a Lake Formation permission to a principal, you can optionally grant the ability to pass that permission to another principal.",
         "A principal with IAM administrative permissions—for example, with the AdministratorAccess AWS managed policy—has permissions to grant Lake Formation permissions and create data lake administrators.", 
-        "To deny a user or role access to Lake Formation administrator operations in your accout, attach below SCP API operations."
+        "To deny a user or role access to Lake Formation administrator operations in your accout, attach below SCP policy"
     ],
     "References": [
                  "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
