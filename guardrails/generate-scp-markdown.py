@@ -23,7 +23,7 @@ def to_pretty_json(value):
 
 def get_template():
   templateLoader = jinja2.FileSystemLoader(searchpath="./")
-  templateEnv = jinja2.Environment(loader=templateLoader)
+  templateEnv = jinja2.Environment(loader=templateLoader, autoescape=select_autoescape(['html', 'xml']), loader=PackageLoader('mypackage'))
   templateEnv.filters['tojson_pretty']=to_pretty_json
   TEMPLATE_FILE = "scp-template.md"
   template = templateEnv.get_template(TEMPLATE_FILE)
