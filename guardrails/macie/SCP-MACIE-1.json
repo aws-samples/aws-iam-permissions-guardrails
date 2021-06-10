@@ -1,0 +1,29 @@
+{
+    "Identifier": "SCP-MACIE-1",
+    "Guardrail": "Prevent Disabling Macie",
+    "Rationale": [
+        "Prevent someone disabling or deleting Macie intentionally or accidentally"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Disable Macie",
+            "Steps": [
+                "Log in to the AWS console with a role that is able to disable Macie and has Macie enabled", 
+                "Disable Macie"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/macie/"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All", 
+    "IAM Actions": [
+        "macie2:DisassociateFromMasterAccount",
+        "macie2:DisableOrganizationAdminAccount",
+        "macie2:DisableMacie",
+        "macie2:DeleteMember"
+    ],
+    "Resource": ["*"]
+}
