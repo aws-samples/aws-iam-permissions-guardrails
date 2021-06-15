@@ -19,10 +19,20 @@
         "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
     ],
     "Policy-Type": "SCP",
-    "SCP-Type": "Prevent-All",
+    "SCP-Type": "Prevent-All-Except",
     "IAM Actions": [
         "iam:CreateUser",
         "iam:CreateAccessKey"
     ],
-    "Resource": ["*"]
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalArn": [
+                   "arn:aws:iam::*:role/[IAM_ADMINISTRATOR_ROLE]"
+                ]
+             }
+        }
+    ],
+    "Category": "Strongly recommended"
 }
