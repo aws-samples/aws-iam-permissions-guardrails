@@ -1,6 +1,6 @@
 # How to automatically resolve IAM Access Analyzer findings for External AWS Principal
 
-This is the accompanying code to the blog post [Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles](https://aws.amazon.com/blogs/security/).
+This is the accompanying code to the blog post [Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles](https://aws.amazon.com/blogs/security/automate-resolution-for-iam-access-analyzer-cross-account-access-findings-on-iam-roles/).
 
 ## Prequisities
 
