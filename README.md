@@ -3,7 +3,7 @@
 ## Table of Contents
 * [Background](#background)
 * [Example Service Control Policies](#example-service-control-policies)
-* [Access Analyzer](#access-analyzer)
+* [Access Analyzer Prescriptive Guidance](#access-analyzer-prescriptive-guidance)
 * [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Background
@@ -19,7 +19,7 @@ These IAM Permissions Guardrails are based on collective experiences. That said,
 
 [List](https://aws-samples.github.io/aws-iam-permissions-guardrails/guardrails/scp-guardrails.html) of example service control policies
 
-## Access Analyzer
+## Access Analyzer Prescriptive Guidance
 
 ### Access Analyzer Enablement
 
@@ -30,6 +30,13 @@ These IAM Permissions Guardrails are based on collective experiences. That said,
 This is the code accompanying the blog post [How to automatically archive expected IAM Access Analyzer findings](https://aws.amazon.com/blogs/security/how-to-automatically-archive-expected-iam-access-analyzer-findings/).
 
 [Code](access-analyzer/step-functions-archive-findings)
+
+### Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles
+
+This is the code accompanying the blog post [Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles](https://aws.amazon.com/blogs/security/automate-resolution-for-iam-access-analyzer-cross-account-access-findings-on-iam-roles/).
+
+[Code](access-analyzer/iam-role-findings-resolution)
+
 
 ## Frequently Asked Questions
 
