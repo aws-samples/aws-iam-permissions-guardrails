@@ -13,7 +13,7 @@
         {
             "Test-Scenario": "Unsubscribe software products from AWS Marketplace",
             "Steps": [
-                    "1.Prerequisite: Subscribed products",
+                    "1.Prerequisite: Subscribed products.A software product from Marketplace must be subscribed",
                     "2.Login into AWS Account", 
                     "3.Search for 'AWS Marketplace Subscriptions' service in console",
                     "4.On the Manage subscriptions page, choose Manage next to the software subscription that you want to cancel.",
