@@ -17,9 +17,9 @@
     ],
     "Test Scenarios": [
         {
-            "Test-Scenario": "Grand IAM user and roles as AWS Lake Formation Admin",
+            "Test-Scenario": "Grant IAM user and roles as AWS Lake Formation Admin",
             "Steps": [
-                    "1.Prerequisite: Access to AWS Lake Foramtion Service",
+                    "1.Prerequisite: Access to AWS Lake Formation Service",
                     "2.Login into AWS Account", 
                     "3.Search for 'AWS Lake Foramtion Service",
                     "4.Under the Permissions section, click on Administrative roles and tasks",
