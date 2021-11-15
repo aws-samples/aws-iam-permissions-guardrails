@@ -1,0 +1,38 @@
+{
+    "Identifier": "SCP-EMR-1",
+    "Guardrail": "Prevent disabling EMR public access block",
+    "Rationale": [
+        "Security policies require that EMR is not exposed to the public Internet"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Modify EMR block public access",
+            "Steps": [
+                "Log in to the AWS console with a role that is not the ALLOWED_ROLE_NAME in the statement but has access to EMR", 
+                "Go to EMR",
+                "Select Block public access (account settings) in the side menu",
+                "Click Change (BPA should be on by default)",
+                "Modify Setting",
+                "Save changes"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-block-public-access.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except", 
+    "IAM Actions": ["emr:PutBlockPublicAccessConfiguration"],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalARN": [
+                   "arn:aws:iam::*:role/[ALLOWED_ROLE_NAME]"
+                ]
+             }
+        }
+    ],
+    "Category": "Mandatory"
+}
