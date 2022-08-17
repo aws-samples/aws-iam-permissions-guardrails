@@ -1104,11 +1104,6 @@ layout: default
   "Condition": {
         "Null": {
             "s3:x-amz-server-side-encryption": "true"
-        },
-        "StringNotEquals": {
-            "s3:x-amz-server-side-encryption": [
-                "aws:kms"
-            ]
         }
     }
 }
