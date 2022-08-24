@@ -33,6 +33,7 @@ layout: default
 
 
 
+
 ## SCP-ACCOUNT-1 
 ## Prevent account region enable and disable actions
 
@@ -1104,11 +1105,6 @@ layout: default
   "Condition": {
         "Null": {
             "s3:x-amz-server-side-encryption": "true"
-        },
-        "StringNotEquals": {
-            "s3:x-amz-server-side-encryption": [
-                "aws:kms"
-            ]
         }
     }
 }
