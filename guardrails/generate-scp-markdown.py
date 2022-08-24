@@ -4,7 +4,7 @@ import json
 import pandas
 
 import jinja2
-from jinja2 import Template
+from jinja2 import Template, select_autoescape
 
 prefix="../docs/guardrails"
 scp_filename=f"{prefix}/scp-guardrails.md"
@@ -23,7 +23,7 @@ def to_pretty_json(value):
 
 def get_template():
   templateLoader = jinja2.FileSystemLoader(searchpath="./")
-  templateEnv = jinja2.Environment(loader=templateLoader, autoescape=select_autoescape(['html', 'xml']), loader=PackageLoader('mypackage'))
+  templateEnv = jinja2.Environment(loader=templateLoader, autoescape=select_autoescape(['html', 'xml']))
   templateEnv.filters['tojson_pretty']=to_pretty_json
   TEMPLATE_FILE = "scp-template.md"
   template = templateEnv.get_template(TEMPLATE_FILE)
