@@ -1,61 +1,6 @@
 ## AWS IAM Permissions Guardrails
 
-## Table of Contents
-* [Background](#background)
-* [Example Service Control Policies](#example-service-control-policies)
-* [Access Analyzer Prescriptive Guidance](#access-analyzer-prescriptive-guidance)
-* [Frequently Asked Questions](#frequently-asked-questions)
-
-## Background
-The AWS IAM Permissions Guardrails help customers securely provision and monitor IAM permissions across a customer’s utilization of AWS Services. Our goal is to help AWS customers look around corners and understand the rationale and remediation for locking down specific IAM Permissions.
-
-Also, our goal is to help AWS customers define a measurable approach to assess their AWS IAM posture. We are looking to compile the deep fine-grained IAM knowledge of global AWS experts and consultants in a scalable automated mechanism. The IAM Permissions Guardrails can be enforced in a CI/CD pipeline or evaluated via AWS Config Rules or assessment scripts.
-
-Our focus is analyzing at the policy level rather than the effective permissions within an account. We want to encourage application teams to create secure policies starting in lower environments. Also, we want to reduce the blast radius due to accidental oversight and improve defense in depth, rather than relying on a single service control policy.
-
-These IAM Permissions Guardrails are based on collective experiences. That said, if you know better ones, submit a pull request.
-
-## Example Service Control Policies
-
-[List](https://aws-samples.github.io/aws-iam-permissions-guardrails/guardrails/scp-guardrails.html) of example service control policies
-
-## Access Analyzer Prescriptive Guidance
-
-### Access Analyzer Enablement
-
-[Enablement](access-analyzer/enablement)
-
-### How to automatically archive expected IAM Access Analyzer findings
-
-This is the code accompanying the blog post [How to automatically archive expected IAM Access Analyzer findings](https://aws.amazon.com/blogs/security/how-to-automatically-archive-expected-iam-access-analyzer-findings/).
-
-[Code](access-analyzer/step-functions-archive-findings)
-
-### Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles
-
-This is the code accompanying the blog post [Automate resolution for IAM Access Analyzer cross-account access findings on IAM roles](https://aws.amazon.com/blogs/security/automate-resolution-for-iam-access-analyzer-cross-account-access-findings-on-iam-roles/).
-
-[Code](access-analyzer/iam-role-findings-resolution)
-
-
-## Frequently Asked Questions
-
-Q. How were these guardrails created?
-
-A. We’ve collected, cataloged, and curated our IAM knowledge based on working with a variety of AWS customers.
-
-Q. Who is the audience for these IAM Permissions Guardrails?
-
-A. Customers that desire help to look around corners and learn from the experiences of others.
-
-Q. Do you have any code to evaluate IAM policies against the IAM Permissions Guardrails?
-
-A.  We will be releasing over the course of the year tools that enable you to analyze your environment against the IAM Permissions Guardrails.
-
-Q. I have ideas to improve this repository. What should I do?
-
-A. Please create an issue or submit a pull request.
-
+Please refer to [Service Control Policy examples](https://github.com/aws-samples/service-control-policy-examples) for the latest guidance and examples.
 
 ## Contributors
 [Contributors](CONTRIBUTORS)
