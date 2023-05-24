@@ -1,0 +1,38 @@
+{
+    "Identifier": "SCP-IAM-6",
+    "Guardrail": "Prevent Creation of New IAM Users or Access Keys",
+    "Rationale": [
+        "Restrict creation of any new IAM users access keys to prohibit bypass of SSO and other controls"
+    ], 
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Create new user",
+            "Steps": [
+                "Log in to the AWS console with a role that is allowed to call CreateUser and/or CreateAccessKey", 
+                "Create a new user",
+                "Create an access key for that user"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "References": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
+    ],
+    "Policy-Type": "SCP",
+    "SCP-Type": "Prevent-All-Except",
+    "IAM Actions": [
+        "iam:CreateUser",
+        "iam:CreateAccessKey"
+    ],
+    "Resource": ["*"],
+    "Condition": [
+        {
+            "ArnNotLike": {
+                "aws:PrincipalArn": [
+                   "arn:aws:iam::*:role/[IAM_ADMINISTRATOR_ROLE]"
+                ]
+             }
+        }
+    ],
+    "Category": "Strongly recommended"
+}
