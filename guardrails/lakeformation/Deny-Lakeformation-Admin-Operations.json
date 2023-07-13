@@ -1,0 +1,47 @@
+{
+    "Identifier": "Deny-Lakeformation-Admin-Operations",
+    "Guardrail": "To prevent users from adding themselves as an administrator with an extract, transform, and load (ETL) script, make sure that all non-administrator users and roles are denied access to these API operations.",
+    "Rationale": [
+        "AWS Lake Formation is a fully managed service that makes it easier for you to build, secure, and manage data lakes.",
+        "AWS Lake Formation Administrators can view all metadata in the AWS Glue Data Catalog. They can also grant and revoke permissions on data resources to principals, including themselves.",
+
+        "AWS Lake Formation requires that each principal (user or role) be authorized to perform actions on Lake Formation–managed resources.", 
+        "A principal is granted the necessary authorizations by the data lake administrator or another principal with the permissions to grant Lake Formation permissions.",
+        "When you grant a Lake Formation permission to a principal, you can optionally grant the ability to pass that permission to another principal.",
+        "A principal with IAM administrative permissions—for example, with the AdministratorAccess AWS managed policy—has permissions to grant Lake Formation permissions and create data lake administrators.", 
+        "To deny a user or role access to Lake Formation administrator operations in your accout, attach below SCP policy"
+    ],
+    "References": [
+                 "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+                 "https://docs.aws.amazon.com/lake-formation/latest/dg/required-permissions-for-grant.html"
+    ],
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Grant IAM user and roles as AWS Lake Formation Admin",
+            "Steps": [
+                    "1.Prerequisite: Access to AWS Lake Formation Service",
+                    "2.Login into AWS Account", 
+                    "3.Search for 'AWS Lake Foramtion Service",
+                    "4.Under the Permissions section, click on Administrative roles and tasks",
+                    "5.Click on Choose Administrators",
+                    "6.Select IAM user or roles",
+                    "7.Click Save"
+            ],
+            "Expected-Result": "User is not authorized to perform: lakeformation:PutDataLakeSettings on resource with an explicit deny"
+        }
+    ],
+    "Policy": "DenyLakeFormationAdministratorOperations",
+     "Version":"2012-10-17",
+     "Statement":[
+		{
+			"Sid": "DenyLakeFormationAdministratorOperations",
+			"Effect": "Deny",
+			"Action": [
+                "lakeformation:PutDataLakeSettings"
+			],
+			"Resource": [
+				"*"
+			]
+		}
+	]
+}
