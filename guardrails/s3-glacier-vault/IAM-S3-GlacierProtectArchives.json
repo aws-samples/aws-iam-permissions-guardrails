@@ -1,0 +1,46 @@
+{
+    "Identifier": "IAM-S3-GlacierProtectArchives",
+    "Guardrail": "Vault Lock Policy that prevent Users from Deleting Glacier Archives Less Than 365 Days Old",
+    "Rationale": [
+        "Vault lock policy that deny deletion of Archives Less Than 365 Days Old.", 
+        "Use case: Suppose that you have a regulatory requirement to retain archives for up to one year before you can delete them."
+    ],
+    "References": [
+                 "https://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html”,
+                 "https://docs.amazonaws.cn/en_us/amazonglacier/latest/dev/vault-lock-how-to-api.html",
+                 "https://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-an-archive-using-cli.html"
+    ],
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Delete Archives using the AWS CLI",
+            "Steps": [
+                    "1.Prerequisite: Setting Up the AWS CLI",
+                    "2.Download and configure the AWS CLI", 
+                    "3.Use the initiate-job command to start an inventory retrieval job: aws glacier initiate-job --vault-name awsexamplevault --account-id 111122223333 --job-parameters '{"Type": "inventory-retrieval"}'",
+                    "4.Use the describe-job command to check status of the previous retrieval job: aws glacier describe-job --vault-name awsexamplevault --account-id 111122223333 --job-id *** jobid ***"
+                    "5.Wait for the job to complete."
+                    "6.When it's complete, use the get-job-output command to download the retrieval job to the file output.json: aws glacier get-job-output --vault-name awsexamplevault --account-id 111122223333 --job-id *** jobid *** output.json"
+                    "7.Use the delete-archive command to delete each archive from a vault until none remain: aws glacier delete-archive --vault-name awsexamplevault --account-id 111122223333 --archive-id *** archiveid ***"
+            ],
+            "Expected-Result": "Access Denied"
+        }
+    ],
+    "Policy": "Vault-Lock-Policy",
+     "Version":"2012-10-17",
+     "Statement":[
+      {
+         "Sid": "deny-based-on-archive-age",
+         "Principal": "*",
+         "Effect": "Deny",
+         "Action": "glacier:DeleteArchive",
+         "Resource": [
+            "arn:aws:glacier:us-west-2:123456789012:vaults/examplevault"
+         ],
+         "Condition": {
+             "NumericLessThan" : {
+                  "glacier:ArchiveAgeInDays" : "365"
+             }
+         }
+      }
+   ]
+}
