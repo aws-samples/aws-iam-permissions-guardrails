@@ -1,0 +1,40 @@
+{
+    "Identifier": "AWS-Marketplace-Unsubscribe",
+    "Guardrail": "Protect aganist canceling your products subscription in AWS Marketplace",
+    "Rationale": [
+        "AWS Marketplace is a digital catalog with thousands of software listings from independent software vendors that make it easy to find, test, buy, and deploy software that runs on AWS.",
+        "Unauthorized modifications to your subscription could affect your workloads in AWS accounts."
+    ],
+    "References": [
+                 "https://aws.amazon.com/premiumsupport/knowledge-center/cancel-marketplace-subscription",
+                 "https://aws.amazon.com/marketplace"
+    ],
+    "Test Scenarios": [
+        {
+            "Test-Scenario": "Unsubscribe software products from AWS Marketplace",
+            "Steps": [
+                    "1.Prerequisite: Subscribed products.A software product from Marketplace must be subscribed",
+                    "2.Login into AWS Account", 
+                    "3.Search for 'AWS Marketplace Subscriptions' service in console",
+                    "4.On the Manage subscriptions page, choose Manage next to the software subscription that you want to cancel.",
+                    "5.Choose Actions, and then choose Cancel subscription.",
+                    "6.Select the check box to acknowledge that running instances are charged to your account, and then choose Yes, cancel subscription."
+            ],
+            "Expected-Result": "User is not authorized to perform: aws-marketplace:Unsubscribe on resource"
+        }
+    ],
+    "Policy": "DenyUnsubscribeAWSMarketPlace",
+     "Version":"2012-10-17",
+     "Statement":[
+		{
+			"Sid": "DenyUnsubscribeAWSMarketPlace",
+			"Effect": "Deny",
+			"Action": [
+				"aws-marketplace:Unsubscribe"
+			],
+			"Resource": [
+				"*"
+			]
+		}
+	]
+}
